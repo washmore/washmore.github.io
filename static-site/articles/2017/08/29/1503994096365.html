@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Java8特性详解--Lambda表达式之排序 - 洗澡狂魔的技术阵地</title><meta name="description" content="java9都要发布了,java8的一些特性你们掌握了吗? 今天给大家带来的是java8核心特性之一的Lambda表达式在数组/集合排序中的应用."/><meta property="og:description" content="java9都要发布了,java8的一些特性你们掌握了吗? 今天给大家带来的是java8核心特性之一的Lambda表达式在数组/集合排序中的应用."/>    <meta name="keywords" content="洗澡狂魔,Java,博客,开源,程序员"/><link rel="dns-prefetch" href="https://washmore.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://washmore.github.io"><link rel="icon" type="image/png" href="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"/><link rel="apple-touch-icon" href="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"><link rel="shortcut icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Java8特性详解--Lambda表达式之排序 - 洗澡狂魔的技术阵地"/><meta property="og:site_name" content="洗澡狂魔的技术阵地"/><meta property="og:url"      content="https://washmore.github.io/articles/2017/08/29/1503994096365.html?"/><meta property="og:image" content="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"/><link rel="search" type="application/opensearchdescription+xml" title="Java8特性详解--Lambda表达式之排序 - 洗澡狂魔的技术阵地" href="/opensearch.xml"><link href="https://washmore.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://washmore.github.io/manifest.json">        <link rel="canonical" href="https://washmore.github.io/articles/2017/08/29/1503994096365.html">        <link rel="stylesheet"
+              href="https://washmore.github.io/skins/Pinghsu/css/base.css?1607592229766"/>
+            <link rel="prev" title="砸金蛋中奖概率杂谈" href="https://washmore.github.io/articles/2017/08/17/1502955219798.html">
+            <link rel="next" title="Java8特性详解--Streams API" href="https://washmore.github.io/articles/2017/09/05/1504607315919.html">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+<script>
+console.info('世界上最远的距离,是我说句hello,你却不回world');
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5b4006c85439d5282cd723e64f2761fa";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script src="https://cdn.jsdelivr.net/npm/vditor@3.5.3/dist/js/icons/ant.js" async="" id="vditorIconScript"></script></head>
+<body>
+<header class="header">
+    <div class="wrapper">
+        <a href="https://washmore.github.io" rel="start" class="header__logo">
+            <img src="https://img.hacpai.com/avatar/1466093804169_1492143958695.png?imageView2/1/w/128/h/128/interlace/0/q/100" alt="洗澡狂魔的技术阵地"/>
+            洗澡狂魔的技术阵地
+        </a>
+
+        <nav class="header__nav mobile__none">
+            <a href="https://washmore.github.io/tags.html" rel="section">
+                Tags
+            </a>
+            <a href="https://washmore.github.io/archives.html">
+                Archives
+            </a>
+            <a rel="archive" href="https://washmore.github.io/links.html">
+                Links
+            </a>
+        </nav>
+
+        <div class="header__bar fn__none" onclick="$(this).next().slideToggle()">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#444" d="M0 3h20v2h-20v-2zM0 9h20v2h-20v-2zM0 15h20v2h-20v-2z"></path>
+            </svg>
+        </div>
+        <main class="header__menu fn__none">
+            <ul>
+                    <li>
+                        <a href="https://github.com/washmore" target="_blank" rel="section">
+                            Github
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://family.washmoretech.com" target="_blank" rel="section">
+                            我要记账
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.anxunsi.net/" target="_blank" rel="section">
+                            实力派studio
+                        </a>
+                    </li>
+                <li>
+                    <a href="https://washmore.github.io/tags.html" rel="section">
+                        Tags
+                    </a>
+                </li>
+                <li>
+                    <a href="https://washmore.github.io/archives.html">
+                        Archives
+                    </a>
+                </li>
+                <li>
+                    <a rel="archive" href="https://washmore.github.io/links.html">
+                        Links
+                    </a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://washmore.github.io/rss.xml" rel="section">
+                        RSS
+                    </a>
+                </li>
+            </ul>
+        </main>
+    </div>
+</header>
+<main id="pjax" class="fn__flex-1">
+    
+    <div class="post wrapper wrapper--miner">
+        <h2 class="item__title">
+            <a rel="bookmark" href="https://washmore.github.io/articles/2017/08/29/1503994096365.html">
+                Java8特性详解--Lambda表达式之排序
+            </a>
+        </h2>
+        <div class="ft__fade item__meta">
+                Updated on
+            <time>
+                Aug 30, 2017
+            </time>
+            with <span data-uvstaturl="https://washmore.github.io/articles/2017/08/29/1503994096365.html">0</span> views
+                and <a href="#b3logsolocomments"><span data-uvstatcmt="1503994096365">0</span> comments</a>
+        </div>
+        <div class="item__tags">
+                <a rel="tag" class="tag tag--0" href="https://washmore.github.io/tags/%E4%BB%A3%E7%A0%81">
+                    <b># 代码</b>
+                </a>
+                <a rel="tag" class="tag tag--1" href="https://washmore.github.io/tags/Java">
+                    <b># Java</b>
+                </a>
+                <a rel="tag" class="tag tag--2" href="https://washmore.github.io/tags/Lambda">
+                    <b># Lambda</b>
+                </a>
+                <a rel="tag" class="tag tag--3" href="https://washmore.github.io/tags/%E8%AF%AD%E6%B3%95%E7%B3%96">
+                    <b># 语法糖</b>
+                </a>
+                <a rel="tag" class="tag tag--4" href="https://washmore.github.io/tags/demo">
+                    <b># demo</b>
+                </a>
+        </div>
+        <div class="vditor-reset">
+            <h2 id="toc_h2_0">前言</h2>
+<p>java9都要发布了,java8的一些特性你们掌握了吗?<br>
+今天给大家带来的是java8核心特性之一的Lambda表达式在数组/集合排序中的应用.</p>
+<h2 id="toc_h2_1">正文</h2>
+<p>首先,为本文创建一个测试类:</p>
+<pre><code>public class Student implements Comparable&lt;Student&gt; {
+    private int age;
+    private String nameEn;
+    private int grade;
+
+    public Student(int age, String nameEn, int grade) {
+        this.age = age;
+        this.nameEn = nameEn;
+        this.grade = grade;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getNameEn() {
+        return nameEn;
+    }
+
+    public void setNameEn(String nameEn) {
+        this.nameEn = nameEn;
+    }
+
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
+    public static int compare(Student s1, Student s2) {
+        return Integer.compare(s1.getAge(), s2.getAge());
+    }
+
+    @Override
+    public int compareTo(Student s) {
+        return Integer.compare(this.getAge(), s.getAge());
+    }
+}
+...
+    /**
+     * 初始化数据
+     *
+     * @return
+     */
+    public static List&lt;Student&gt; initData() {
+        List&lt;Student&gt; list = new ArrayList&lt;&gt;();
+        list.add(new Student(11, "zhangsan", 5));
+        list.add(new Student(12, "lisi", 5));
+        list.add(new Student(9, "wangwu", 6));
+        list.add(new Student(13, "zhaoliu", 6));
+        list.add(new Student(8, "tianqi", 3));
+        list.add(new Student(6, "wangba", 1));
+        list.add(new Student(8, "jiujiu", 2));
+        return list;
+    }
+...
+
+</code></pre>
+<h3 id="toc_h3_2">传统排序方式</h3>
+<p>1.在Java 8之前,对集合进行排序要为<code>Comparator</code>创建一个匿名内部类用来排序,比如,按照age字段从小到大排序：</p>
+<pre><code>    /**
+     * 传统匿名内部类比较器
+     */
+    @Test
+    public void soreted1() {
+        List&lt;Student&gt; list = Java8SortedDemo.initData();
+        list.sort(new Comparator&lt;Student&gt;() {
+            @Override
+            public int compare(Student s1, Student s2) {
+                return Integer.compare(s1.getAge(), s2.getAge());
+            }
+        });
+        Assert.assertEquals(list.get(0).getNameEn(), "wangba");
+    }
+
+</code></pre>
+<p>2.或者让<code>Student</code>实现<code>Comparable</code>接口,复写<code>compareTo</code>方法,同样按照age字段从小到大排序:</p>
+<pre><code>...
+    @Override
+    public int compareTo(Student s) {
+        return Integer.compare(this.getAge(), s.getAge());
+    }
+...
+
+    /**
+     * 实现Comparable接口
+     */
+    @Test
+    public void soreted2() {
+        List&lt;Student&gt; list = Java8SortedDemo.initData();
+        Collections.sort(list);
+        Assert.assertEquals(list.get(0).getNameEn(), "wangba");
+    }
+</code></pre>
+<h3 id="toc_h3_3">java8排序方式</h3>
+<p>3.在java8中引入了重要的特性之一lambda,根据Lambda表达式的介绍,我们现在可以不使用匿名内部类,只使用简单实用的语义就可以得到相同的结果,按照age字段从小到大排序:</p>
+<pre><code>    /**
+     * java8的Lambda,显式指定比较类型
+     */
+    @Test
+    public void soreted3() {
+        List&lt;Student&gt; list = Java8SortedDemo.initData();
+        list.sort((Student s1, Student s2) -&gt; Integer.compare(s1.getAge(), s2.getAge()));
+        Assert.assertEquals(list.get(0).getNameEn(), "wangba");
+    }
+</code></pre>
+<p>4.我们甚至可以省略类型,让编译器自行推测,按照age字段从小到大排序:</p>
+<pre><code>    /**
+     * java8的Lambda,不指定比较类型
+     */
+    @Test
+    public void soreted4() {
+        List&lt;Student&gt; list = Java8SortedDemo.initData();
+        list.sort((s1, s2) -&gt; Integer.compare(s1.getAge(), s2.getAge()));
+        Assert.assertEquals(list.get(0).getNameEn(), "wangba");
+    }
+
+</code></pre>
+<p>5.我们还可以使用静态方法排序,按照age字段从小到大排序:</p>
+<pre><code>...
+    public static int compare(Student s1, Student s2) {
+        return Integer.compare(s1.getAge(), s2.getAge());
+    }
+...
+
+    /**
+     * 自定义静态方法
+     */
+    @Test
+    public void soreted5() {
+        List&lt;Student&gt; list = Java8SortedDemo.initData();
+        list.sort(Student::compare);
+        Assert.assertEquals(list.get(0).getNameEn(), "wangba");
+    }
+</code></pre>
+<p>6.当然,java8为我们准备好了通用的<code>Comparator.comparing</code>方法,按照age字段从小到大排序:</p>
+<pre><code>    /**
+     * Comparator提供的静态方法
+     */
+    @Test
+    public void soreted6() {
+        List&lt;Student&gt; list = Java8SortedDemo.initData();
+        list.sort(Comparator.comparing(Student::getAge));
+        Assert.assertEquals(list.get(0).getNameEn(), "wangba");
+    }
+</code></pre>
+<h3 id="toc_h3_4">java8排序方法拓展:</h3>
+<p><strong>java8同样让我们具备编写更复杂逻辑排序的方法表达式,</strong></p>
+<p>7.比如,反转排序,按照age字段从大到小排序:</p>
+<pre><code>    /**
+     * 反转排序
+     */
+    @Test
+    public void soreted7() {
+        List&lt;Student&gt; list = Java8SortedDemo.initData();
+        list.sort(Comparator.comparing(Student::getAge).reversed());
+        Assert.assertEquals(list.get(0).getNameEn(), "zhaoliu");
+    }
+</code></pre>
+<p>8.比如,多字段组合排序,先按照grade从大到小,相同则按照age从大到小排序:</p>
+<pre><code>    /**
+     * 多字段组合排序(匿名类方式)
+     */
+    @Test
+    public void soreted8() {
+        List&lt;Student&gt; list = Java8SortedDemo.initData();
+        list.sort((s1, s2) -&gt; {
+            if (Integer.compare(s1.getGrade(), s2.getGrade()) != 0) {
+                return Integer.compare(s2.getGrade(), s1.getGrade());
+            }
+            return Integer.compare(s2.getAge(), s1.getAge());
+        });
+        Assert.assertEquals(list.get(0).getNameEn(), "zhaoliu");
+    }
+</code></pre>
+<p>9.java8的<code>Comparator</code>为我们准备了更便利的链式风格组合排序方式,先按照grade从大到小,相同则按照age从小到大排序:</p>
+<pre><code>    /**
+     * 多字段组合排序(链式接口)
+     */
+    @Test
+    public void soreted9() {
+        List&lt;Student&gt; list = Java8SortedDemo.initData();
+        list.sort(Comparator.comparing(Student::getGrade).reversed().thenComparing(Student::getAge));
+        Assert.assertEquals(list.get(0).getNameEn(), "wangwu");
+    }
+</code></pre>
+<h2 id="toc_h2_5">总结</h2>
+<p>Lambda表达式虽然不是什么新鲜玩意了,但是灵活使用java8提供的语法糖,能让你书写出更简洁,语义化的代码...<br>
+本文所示demo已经上传github,各位随时可以下载查阅:<strong><a href="https://github.com/1102568869/SpringBootDemo/tree/Java8%E7%89%B9%E6%80%A7%E8%AF%A6%E8%A7%A3" target="_blank">Java8特性详解--Lambda表达式之排序</a></strong></p>
+        </div>
+    </div>
+    <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h2">
+            <a href="#toc_h2_0">前言</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_1">正文</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_2">传统排序方式</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_3">java8排序方式</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_4">java8排序方法拓展:</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_5">总结</a>
+        </li>
+</ul>    </div>
+    <div class="body--gray post__gray">
+        <div class="wrapper comment">
+                <div id="gitalk-container" style="padding: 30px 0;"></div>
+                <div id="b3logsolocomments"></div>
+                <div id="vcomment" style="padding: 30px 0;" data-name="washmore" data-postId="1503994096365"></div>
+
+            <div class="post__list fn__flex">
+                <div class="fn__flex-1">
+                    <div id="externalRelevantArticles"></div>
+                </div>
+                <div class="post__list-mid fn__flex-1">
+                    <div id="randomArticles"></div>
+                </div>
+                <div class="fn__flex-1">
+                    <div id="relevantArticles"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post__fix">
+        <div class="wrapper">
+            <span class="post__share mobile__none">
+                Share
+                <span class="tag tag--4" data-type="weibo">WeiBo</span>
+                <span class="tag tag--5" data-type="twitter">Twitter</span>
+                <span class="tag tag--6" data-type="qqz">QZone</span>
+                <span class="post__code tag tag--7"
+                      data-type="wechat"
+                      data-title="Java8特性详解--Lambda表达式之排序"
+                      data-blogtitle="洗澡狂魔的技术阵地"
+                      data-url="https://washmore.github.io/articles/2017/08/29/1503994096365.html"
+                      data-avatar="https://img.hacpai.com/avatar/1466093804169_1492143958695.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+                    WeChat
+                    <span class="qrcode"></span>
+                </span>
+            </span>
+            <span class="post__arrow">
+                    <a href="https://washmore.github.io/articles/2017/08/17/1502955219798.html" rel="prev"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="砸金蛋中奖概率杂谈"
+                       aria-label="旧一篇: 砸金蛋中奖概率杂谈">←</a>
+
+                    <a href="https://washmore.github.io/articles/2017/09/05/1504607315919.html" rel="next"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="Java8特性详解--Streams API"
+                       aria-label="新一篇: Java8特性详解--Streams API">→</a>
+                <a href="javascript:Util.goTop()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到顶部">↑</a>
+                <a href="javascript:Util.goBottom()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到底部">↓</a>
+            </span>
+        </div>
+    </div>
+    
+</main>
+<footer class="footer">
+    <div class="ft__center">
+    <a href="https://ld246.com/member/washmore"
+       aria-label="https://ld246.com/member/washmore"
+       class="vditor-tooltipped__n vditor-tooltipped  user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/washmore"
+           aria-label="https://github.com/washmore"
+           class="vditor-tooltipped__n vditor-tooltipped  user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+    </div>
+    <nav class="footer__nav mobile__none">
+            <a class="ft__link" href="https://github.com/washmore" target="_blank" rel="section">
+                Github
+            </a>
+            <a class="ft__link" href="https://family.washmoretech.com" target="_blank" rel="section">
+                我要记账
+            </a>
+            <a class="ft__link" href="https://www.anxunsi.net/" target="_blank" rel="section">
+                实力派studio
+            </a>
+        <a class="ft__link" rel="alternate" href="https://washmore.github.io/rss.xml" rel="section">RSS</a>
+    </nav>
+    <div class="footer__border mobile__none"></div>
+    <div class="wrapper fn__flex">
+        <div class="fn__flex-1 mobile__none">
+            <div class="ft__fade">washmore - 世界上最远的距离,是我说句hello,你却不回world</div>
+            <br>
+                资深Java搬运工,Vue&React全家桶...
+        </div>
+
+
+        <div class="fn__flex-1 footer__copyright">
+            <a class="ft__link" href="https://washmore.github.io/archives.html">
+                61
+                文章
+            </a>
+           <br>
+            <span data-uvstaturl="https://washmore.github.io">355649</span> <span class="ft-gray">浏览</span>
+ <br>
+            &copy; 2020
+            <a class="ft__link" href="https://washmore.github.io">洗澡狂魔的技术阵地</a>
+            &nbsp;|&nbsp;本网站使用<a href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=i8m75zfp" target="_blank">阿里云</a>服务器,<a href="https://www.anxunsi.net" target="_blank">实力派工作室</a>技术支持&nbsp;|&nbsp;<a href="http://www.beian.miit.gov.cn/" target="_blank">湘ICP备19012122号</a>
+<script type='text/javascript'>
+	window.onload = function () {
+	    $(function () {
+            $('body > div.wrapper > div > aside > section > div.module').first(). before('<div class="module" id="qrcode_gzh" style="display:none;"><header><h2>扫码关注公众号</h2></header><main><img src="https://file.washmoretech.com/qrcode_gzh.jpg"/></main></div>');
+            $('#qrcode_gzh').slideDown("slow");
+   $('body > div.wrapper > div > aside > section > div.module> header > h2').first(). each(function(i){
+                    $(this).html($(this).html()+"&nbsp;&nbsp;<a href='javascript:void(0);' class='support_washmore' style='color:red;'>->打赏一下(点我嘛)<-</a>");
+                });
+                $('body > div.wrapper > div > main > article > header.title:first'). prepend('<h2 style="text-align:center;font-size:26px;"><a href="javascript:void(0);"   class="support_washmore"   title="点我,点我,快点我嘛~!">如果觉得我的文章对您有用,考虑随意打赏点呗~</a></h2>');           
+
+
+            $.getScript("https://file.washmoretech.com/jquery.support.1.0.0.js", function(){
+            });
+                    $('a').each(function(){
+				if($(this).attr('href') && $(this).attr('href').indexOf('http')==0 && $(this).attr('href').indexOf('blog.washmore')==-1){
+					$(this).attr("target","_blank");
+				}
+		    });
+               
+            });
+	}
+</script>
+
+        </div>
+    </div>
+</footer>
+<script>
+  var Label = {
+    speech: true,
+    servePath: "https://washmore.github.io",
+    staticServePath: "https://washmore.github.io",
+    luteAvailable: false,
+    hljsStyle: 'github',
+    langLabel: "zh_CN",
+    version: "4.3.1",
+    staticSite: true,
+    showCodeBlockLn: false,
+    articleId: "1503994096365",
+  }
+</script>
+<script type="text/javascript" src="https://washmore.github.io/skins/Pinghsu/js/headroom.min.js"></script>
+<script type="text/javascript"
+        src="https://washmore.github.io/skins/Pinghsu/js/common.min.js?1607592229766"
+        charset="utf-8"></script>
+
+
+
+<script type="text/javascript">
+    Util.addScript('https://washmore.github.io/js/page.min.js?1607592229766', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论不能为空",
+        "oId": "1503994096365",
+        "blogHost": "https://washmore.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
+    page.loadRelevantArticles('1503994096365', '<h3>RELEVANT POSTS</h3>');
+Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 3145ms, 2020/12/10 17:25:58 -->

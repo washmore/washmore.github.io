@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>OkHttp中文文档之Calls(原创汉化搬运) - 洗澡狂魔的技术阵地</title><meta name="description" content="最近新的项目抛弃了原来apache的httpclient组件,改用OkHttp,因此翻了一下网上的文档,中文文档全是机翻(还是比较搓的那种机器)... 这里是针对OkHttp官方文档的汉化版本系列文章第一篇,如果响应不错的话,后续继续人工搬运ing,如果文中有任何谬误,请在评论中及时指正."/><meta property="og:description" content="最近新的项目抛弃了原来apache的httpclient组件,改用OkHttp,因此翻了一下网上的文档,中文文档全是机翻(还是比较搓的那种机器)... 这里是针对OkHttp官方文档的汉化版本系列文章第一篇,如果响应不错的话,后续继续人工搬运ing,如果文中有任何谬误,请在评论中及时指正."/>    <meta name="keywords" content="洗澡狂魔,Java,博客,开源,程序员"/><link rel="dns-prefetch" href="https://washmore.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://washmore.github.io"><link rel="icon" type="image/png" href="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"/><link rel="apple-touch-icon" href="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"><link rel="shortcut icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="OkHttp中文文档之Calls(原创汉化搬运) - 洗澡狂魔的技术阵地"/><meta property="og:site_name" content="洗澡狂魔的技术阵地"/><meta property="og:url"      content="https://washmore.github.io/articles/2017/09/29/1506671979764.html?"/><meta property="og:image" content="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"/><link rel="search" type="application/opensearchdescription+xml" title="OkHttp中文文档之Calls(原创汉化搬运) - 洗澡狂魔的技术阵地" href="/opensearch.xml"><link href="https://washmore.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://washmore.github.io/manifest.json">        <link rel="canonical" href="https://washmore.github.io/articles/2017/09/29/1506671979764.html">        <link rel="stylesheet"
+              href="https://washmore.github.io/skins/Pinghsu/css/base.css?1607592229766"/>
+            <link rel="prev" title="微软算法面试题「判断麻将是否和牌」应该如何做？" href="https://washmore.github.io/articles/2017/09/14/1505383047067.html">
+            <link rel="next" title="OkHttp中文文档之Connections(原创汉化搬运)" href="https://washmore.github.io/articles/2017/10/16/1508137849254.html">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+<script>
+console.info('世界上最远的距离,是我说句hello,你却不回world');
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5b4006c85439d5282cd723e64f2761fa";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script src="https://cdn.jsdelivr.net/npm/vditor@3.5.3/dist/js/icons/ant.js" async="" id="vditorIconScript"></script></head>
+<body>
+<header class="header">
+    <div class="wrapper">
+        <a href="https://washmore.github.io" rel="start" class="header__logo">
+            <img src="https://img.hacpai.com/avatar/1466093804169_1492143958695.png?imageView2/1/w/128/h/128/interlace/0/q/100" alt="洗澡狂魔的技术阵地"/>
+            洗澡狂魔的技术阵地
+        </a>
+
+        <nav class="header__nav mobile__none">
+            <a href="https://washmore.github.io/tags.html" rel="section">
+                Tags
+            </a>
+            <a href="https://washmore.github.io/archives.html">
+                Archives
+            </a>
+            <a rel="archive" href="https://washmore.github.io/links.html">
+                Links
+            </a>
+        </nav>
+
+        <div class="header__bar fn__none" onclick="$(this).next().slideToggle()">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#444" d="M0 3h20v2h-20v-2zM0 9h20v2h-20v-2zM0 15h20v2h-20v-2z"></path>
+            </svg>
+        </div>
+        <main class="header__menu fn__none">
+            <ul>
+                    <li>
+                        <a href="https://github.com/washmore" target="_blank" rel="section">
+                            Github
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://family.washmoretech.com" target="_blank" rel="section">
+                            我要记账
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.anxunsi.net/" target="_blank" rel="section">
+                            实力派studio
+                        </a>
+                    </li>
+                <li>
+                    <a href="https://washmore.github.io/tags.html" rel="section">
+                        Tags
+                    </a>
+                </li>
+                <li>
+                    <a href="https://washmore.github.io/archives.html">
+                        Archives
+                    </a>
+                </li>
+                <li>
+                    <a rel="archive" href="https://washmore.github.io/links.html">
+                        Links
+                    </a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://washmore.github.io/rss.xml" rel="section">
+                        RSS
+                    </a>
+                </li>
+            </ul>
+        </main>
+    </div>
+</header>
+<main id="pjax" class="fn__flex-1">
+    
+    <div class="post wrapper wrapper--miner">
+        <h2 class="item__title">
+            <a rel="bookmark" href="https://washmore.github.io/articles/2017/09/29/1506671979764.html">
+                OkHttp中文文档之Calls(原创汉化搬运)
+            </a>
+        </h2>
+        <div class="ft__fade item__meta">
+                Updated on
+            <time>
+                Sep 30, 2017
+            </time>
+            with <span data-uvstaturl="https://washmore.github.io/articles/2017/09/29/1506671979764.html">0</span> views
+                and <a href="#b3logsolocomments"><span data-uvstatcmt="1506671979764">0</span> comments</a>
+        </div>
+        <div class="item__tags">
+                <a rel="tag" class="tag tag--0" href="https://washmore.github.io/tags/Java">
+                    <b># Java</b>
+                </a>
+                <a rel="tag" class="tag tag--1" href="https://washmore.github.io/tags/OkHttp">
+                    <b># OkHttp</b>
+                </a>
+                <a rel="tag" class="tag tag--2" href="https://washmore.github.io/tags/%E6%96%87%E6%A1%A3">
+                    <b># 文档</b>
+                </a>
+                <a rel="tag" class="tag tag--3" href="https://washmore.github.io/tags/%E4%BB%A3%E7%A0%81">
+                    <b># 代码</b>
+                </a>
+        </div>
+        <div class="vditor-reset">
+            <p>The HTTP client’s job is to accept your request and produce its response. This is simple in theory but it gets tricky in practice.</p>
+<p>Http client 的作用就是接收你的请求然后提供对此的响应,这从原理来说很简单,但是实践起来却比较棘手.</p>
+<h4 id="toc_h4_0"><a href="http://square.github.io/okhttp/3.x/okhttp/okhttp3/Request.html" target="_blank">Requests</a>(请求)</h4>
+<p>Each HTTP request contains a URL, a method (like <code>GET</code> or <code>POST</code>), and a list of headers. Requests may also contain a body: a data stream of a specific content type.</p>
+<p>每个Http request都包含一个URL,一个method(诸如<code>GET</code> 或者 <code>POST</code>之类),以及一系列的headers.有的请求或许还包含reqeustBody(针对不同的content type有不同的数据流格式)</p>
+<h4 id="toc_h4_1"><a href="http://square.github.io/okhttp/3.x/okhttp/okhttp3/Response.html" target="_blank">Responses</a>(响应)</h4>
+<p>The response answers the request with a code (like 200 for success or 404 for not found), headers, and its own optional body.</p>
+<p>response是对request的应答,包含一个code(比如200代表请求成功,或者404代表请求资源未找到),响应头headers,以及可选的response body内容.</p>
+<h4 id="toc_h4_2">Rewriting Requests(重写请求)</h4>
+<p>When you provide OkHttp with an HTTP request, you’re describing the request at a high-level: <em>“fetch me this URL with these headers.”</em> For correctness and efficiency, OkHttp rewrites your request before transmitting it.</p>
+<p>当你使用OkHttp发起一个HTTP request时,代表你在描述一个高标准的request: <em>“给我用这些headers搞定这个URL”</em> 正确且高效,(为了达到这样的效果)OkHttp将会在真正发起这个request前重写它<br>
+(<strong>注:王婆卖瓜orz</strong>)</p>
+<p>OkHttp may add headers that are absent from the original request, including <code>Content-Length</code>, <code>Transfer-Encoding</code>, <code>User-Agent</code>, <code>Host</code>, <code>Connection</code>, and <code>Content-Type</code>. It will add an <code>Accept-Encoding</code> header for transparent response compression unless the header is already present. If you’ve got cookies, OkHttp will add a <code>Cookie</code> header with them.</p>
+<p>OkHttp会额外添加一些原始request中缺失的headers,包括<code>Content-Length</code>, <code>Transfer-Encoding</code>, <code>User-Agent</code>, <code>Host</code>, <code>Connection</code>, 以及 <code>Content-Type</code>.还会添加一个叫<code>Accept-Encoding</code>的header用于透明压缩响应内容,除非这个requestr之前就已经指定了这个header.如果你获得了cookies,那么OkHttp还会添加一个<code>Cookie</code>的header,内容就是你获得的这些cookies.(<strong>注:这里应该是指从上下文环境中拿到的cookies,比如我刚刚用OKhttp发起一次请求并正确响应,那从这个响应里面是能知道cookies内容的,下一次请求就能用上</strong>)</p>
+<p>Some requests will have a cached response. When this cached response isn’t fresh, OkHttp can do a <em>conditional GET</em> to download an updated response if it’s newer than what’s cached. This requires headers like <code>If-Modified-Since</code> and <code>If-None-Match</code> to be added.</p>
+<p>有些请求或许会得到一份缓存过的响应,当这些缓存过的响应不刷新,而且未缓存的响应内容比缓存过的要新的话,OkHttp将会进行一次 <em>有条件的</em> 下载更新响应内容.当然,这个功能需要添加<code>If-Modified-Since</code> 或者 <code>If-None-Match</code>这类的header才能生效(<strong>注:这里是指遇到这种场景OKhttp会自动添加<code>If-Modified-Since</code> 或者 <code>If-None-Match</code>来进行处理,还是说需要手动添加<code>If-Modified-Since</code> 或者 <code>If-None-Match</code>这样的header,OKHttp才会做这样的处理,我暂时还不敢确认,后续尝试过来再来落实,或许有已经确认过的大佬在留言告知</strong>)</p>
+<h4 id="toc_h4_3">Rewriting Responses(重写响应)</h4>
+<p>If transparent compression was used, OkHttp will drop the corresponding response headers <code>Content-Encoding</code> and <code>Content-Length</code> because they don’t apply to the decompressed response body.</p>
+<p>如果透明压缩规则被使用(<strong>注:见前文</strong>),OKHttp就会丢弃掉响应中的<code>Content-Encoding</code> and <code>Content-Length</code>这两个headers,因为他们无法正确反映解压过的响应内容(<strong>注:偏小</strong>)</p>
+<p>If a conditional GET was successful, responses from the network and cache are merged as directed by the spec.</p>
+<p>如果一个有条件的GET请求被执行,那么responses也会按照这个条件规则进行修改.</p>
+<h4 id="toc_h4_4">Follow-up Requests(302请求)</h4>
+<p>When your requested URL has moved, the webserver will return a response code like <code>302</code> to indicate the document’s new URL. OkHttp will follow the redirect to retrieve a final response.</p>
+<p>如果你的requested URL被转移,那么web服务器就回返回一个响应code<code>302</code>来给你指定一个新的请求地址,OkHttp将会重新请求这个重定向过的URL来获得最终的response.</p>
+<p>If the response issues an authorization challenge, OkHttp will ask the <a href="http://square.github.io/okhttp/3.x/okhttp/okhttp3/Authenticator.html" target="_blank"><code>Authenticator</code></a> (if one is configured) to satisfy the challenge. If the authenticator supplies a credential, the request is retried with that credential included.</p>
+<p>如果response需要权限验证,OkHttp就会向<a href="http://square.github.io/okhttp/3.x/okhttp/okhttp3/Authenticator.html" target="_blank"><code>Authenticator</code></a>(如果配置过的话) 申请身份凭证来尝试通过验证,如果认证器能够提供凭证的话,OkHttp就会带着这个凭证尝试重新请求.</p>
+<h4 id="toc_h4_5">Retrying Requests(重试请求)</h4>
+<p>Sometimes connections fail: either a pooled connection was stale and disconnected, or the webserver itself couldn’t be reached. OkHttp will retry the request with a different route if one is available.</p>
+<p>有些时候connections会失败:要么是connections死了断开,要么是这个服务器节点本身就不可访问了,OkHttp就会重新尝试请求另外可用的route节点.</p>
+<h4 id="toc_h4_6"><a href="http://square.github.io/okhttp/3.x/okhttp/okhttp3/Call.html" target="_blank">Calls</a>(调用)</h4>
+<p>With rewrites, redirects, follow-ups and retries, your simple request may yield many requests and responses. OkHttp uses <code>Call</code> to model the task of satisfying your request through however many intermediate requests and responses are necessary. Typically this isn’t many! But it’s comforting to know that your code will continue to work if your URLs are redirected or if you failover to an alternate IP address.</p>
+<p>因为以上这些情况,一个简单的request也许都会产生很多requests和responses,OkHtt用了<code>Call</code>这样一种模型来出色的完成这样需要多个中间请求和响应的工作.典型的手段不多,但是能让你的代码在URL被转移或者某个服务器节点发生故障的情况下也能继续正常工作.(<strong>注:2333又开始自夸了/doge</strong>)</p>
+<p>Calls are executed in one of two ways:</p>
+<ul>
+<li><strong>Synchronous:</strong> your thread blocks until the response is readable.</li>
+<li><strong>Asynchronous:</strong> you enqueue the request on any thread, and get <a href="http://square.github.io/okhttp/3.x/okhttp/okhttp3/Callback.html" target="_blank">called back</a> on another thread when the response is readable.</li>
+</ul>
+<p>Calls 包含两种方式:</p>
+<ul>
+<li><strong>同步的:</strong> 你的线程将被阻塞直到响应内容可读</li>
+<li><strong>异步的:</strong> 你把请求推到其他线程的队列中,然后当响应内容可读之后在另外的线程上通过回调函数 <a href="http://square.github.io/okhttp/3.x/okhttp/okhttp3/Callback.html" target="_blank">called back</a>来获取</li>
+</ul>
+<p>Calls can be canceled from any thread. This will fail the call if it hasn’t yet completed! Code that is writing the request body or reading the response body will suffer an <code>IOException</code> when its call is canceled.</p>
+<p>Calls 能在任何线程被取消,如果请求没有完成,被取消后这个请求就将会失败! 如果代码正在执行request body写操作或者response body读操作,那么此时取消Calls的行为将会抛出一个<code>IOException</code>异常.</p>
+<h4 id="toc_h4_7">Dispatch(分配)</h4>
+<p>For synchronous calls, you bring your own thread and are responsible for managing how many simultaneous requests you make. Too many simultaneous connections wastes resources; too few harms latency.</p>
+<p>对于同步调用来说,再多同时发起的requests你也能在该线程上妥当管理.(要注意的是)太多simultaneous connections将会耗费大量的系统资源,而太少的simultaneous connections则将会让处理速度变慢,从而带来更高的延迟</p>
+<p>For asynchronous calls, <a href="http://square.github.io/okhttp/3.x/okhttp/okhttp3/Dispatcher.html" target="_blank"><code>Dispatcher</code></a> implements policy for maximum simultaneous requests. You can set maximums per-webserver (default is 5), and overall (default is 64).</p>
+<p>对于异步调用来说,<a href="http://square.github.io/okhttp/3.x/okhttp/okhttp3/Dispatcher.html" target="_blank"><code>Dispatcher</code></a>可以设置simultaneous requests的限制,你可以设置针对单个服务器的并发连接上限(默认是5),也可以设置整体最大上限(默认是64)</p>
+<hr>
+<p><strong>译:洗澡狂魔,原文wiki地址:<a href="https://github.com/square/okhttp/wiki/Calls" target="_blank">https://github.com/square/okhttp/wiki/Calls</a></strong></p>
+        </div>
+    </div>
+    <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h4">
+            <a href="#toc_h4_0">Requests(请求)</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_1">Responses(响应)</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_2">Rewriting Requests(重写请求)</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_3">Rewriting Responses(重写响应)</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_4">Follow-up Requests(302请求)</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_5">Retrying Requests(重试请求)</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_6">Calls(调用)</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_7">Dispatch(分配)</a>
+        </li>
+</ul>    </div>
+    <div class="body--gray post__gray">
+        <div class="wrapper comment">
+                <div id="gitalk-container" style="padding: 30px 0;"></div>
+                <div id="b3logsolocomments"></div>
+                <div id="vcomment" style="padding: 30px 0;" data-name="washmore" data-postId="1506671979764"></div>
+
+            <div class="post__list fn__flex">
+                <div class="fn__flex-1">
+                    <div id="externalRelevantArticles"></div>
+                </div>
+                <div class="post__list-mid fn__flex-1">
+                    <div id="randomArticles"></div>
+                </div>
+                <div class="fn__flex-1">
+                    <div id="relevantArticles"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post__fix">
+        <div class="wrapper">
+            <span class="post__share mobile__none">
+                Share
+                <span class="tag tag--4" data-type="weibo">WeiBo</span>
+                <span class="tag tag--5" data-type="twitter">Twitter</span>
+                <span class="tag tag--6" data-type="qqz">QZone</span>
+                <span class="post__code tag tag--7"
+                      data-type="wechat"
+                      data-title="OkHttp中文文档之Calls(原创汉化搬运)"
+                      data-blogtitle="洗澡狂魔的技术阵地"
+                      data-url="https://washmore.github.io/articles/2017/09/29/1506671979764.html"
+                      data-avatar="https://img.hacpai.com/avatar/1466093804169_1492143958695.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+                    WeChat
+                    <span class="qrcode"></span>
+                </span>
+            </span>
+            <span class="post__arrow">
+                    <a href="https://washmore.github.io/articles/2017/09/14/1505383047067.html" rel="prev"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="微软算法面试题「判断麻将是否和牌」应该如何做？"
+                       aria-label="旧一篇: 微软算法面试题「判断麻将是否和牌」应该如何做？">←</a>
+
+                    <a href="https://washmore.github.io/articles/2017/10/16/1508137849254.html" rel="next"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="OkHttp中文文档之Connections(原创汉化搬运)"
+                       aria-label="新一篇: OkHttp中文文档之Connections(原创汉化搬运)">→</a>
+                <a href="javascript:Util.goTop()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到顶部">↑</a>
+                <a href="javascript:Util.goBottom()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到底部">↓</a>
+            </span>
+        </div>
+    </div>
+    
+</main>
+<footer class="footer">
+    <div class="ft__center">
+    <a href="https://ld246.com/member/washmore"
+       aria-label="https://ld246.com/member/washmore"
+       class="vditor-tooltipped__n vditor-tooltipped  user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/washmore"
+           aria-label="https://github.com/washmore"
+           class="vditor-tooltipped__n vditor-tooltipped  user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+    </div>
+    <nav class="footer__nav mobile__none">
+            <a class="ft__link" href="https://github.com/washmore" target="_blank" rel="section">
+                Github
+            </a>
+            <a class="ft__link" href="https://family.washmoretech.com" target="_blank" rel="section">
+                我要记账
+            </a>
+            <a class="ft__link" href="https://www.anxunsi.net/" target="_blank" rel="section">
+                实力派studio
+            </a>
+        <a class="ft__link" rel="alternate" href="https://washmore.github.io/rss.xml" rel="section">RSS</a>
+    </nav>
+    <div class="footer__border mobile__none"></div>
+    <div class="wrapper fn__flex">
+        <div class="fn__flex-1 mobile__none">
+            <div class="ft__fade">washmore - 世界上最远的距离,是我说句hello,你却不回world</div>
+            <br>
+                资深Java搬运工,Vue&React全家桶...
+        </div>
+
+
+        <div class="fn__flex-1 footer__copyright">
+            <a class="ft__link" href="https://washmore.github.io/archives.html">
+                61
+                文章
+            </a>
+           <br>
+            <span data-uvstaturl="https://washmore.github.io">355649</span> <span class="ft-gray">浏览</span>
+ <br>
+            &copy; 2020
+            <a class="ft__link" href="https://washmore.github.io">洗澡狂魔的技术阵地</a>
+            &nbsp;|&nbsp;本网站使用<a href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=i8m75zfp" target="_blank">阿里云</a>服务器,<a href="https://www.anxunsi.net" target="_blank">实力派工作室</a>技术支持&nbsp;|&nbsp;<a href="http://www.beian.miit.gov.cn/" target="_blank">湘ICP备19012122号</a>
+<script type='text/javascript'>
+	window.onload = function () {
+	    $(function () {
+            $('body > div.wrapper > div > aside > section > div.module').first(). before('<div class="module" id="qrcode_gzh" style="display:none;"><header><h2>扫码关注公众号</h2></header><main><img src="https://file.washmoretech.com/qrcode_gzh.jpg"/></main></div>');
+            $('#qrcode_gzh').slideDown("slow");
+   $('body > div.wrapper > div > aside > section > div.module> header > h2').first(). each(function(i){
+                    $(this).html($(this).html()+"&nbsp;&nbsp;<a href='javascript:void(0);' class='support_washmore' style='color:red;'>->打赏一下(点我嘛)<-</a>");
+                });
+                $('body > div.wrapper > div > main > article > header.title:first'). prepend('<h2 style="text-align:center;font-size:26px;"><a href="javascript:void(0);"   class="support_washmore"   title="点我,点我,快点我嘛~!">如果觉得我的文章对您有用,考虑随意打赏点呗~</a></h2>');           
+
+
+            $.getScript("https://file.washmoretech.com/jquery.support.1.0.0.js", function(){
+            });
+                    $('a').each(function(){
+				if($(this).attr('href') && $(this).attr('href').indexOf('http')==0 && $(this).attr('href').indexOf('blog.washmore')==-1){
+					$(this).attr("target","_blank");
+				}
+		    });
+               
+            });
+	}
+</script>
+
+        </div>
+    </div>
+</footer>
+<script>
+  var Label = {
+    speech: true,
+    servePath: "https://washmore.github.io",
+    staticServePath: "https://washmore.github.io",
+    luteAvailable: false,
+    hljsStyle: 'github',
+    langLabel: "zh_CN",
+    version: "4.3.1",
+    staticSite: true,
+    showCodeBlockLn: false,
+    articleId: "1506671979764",
+  }
+</script>
+<script type="text/javascript" src="https://washmore.github.io/skins/Pinghsu/js/headroom.min.js"></script>
+<script type="text/javascript"
+        src="https://washmore.github.io/skins/Pinghsu/js/common.min.js?1607592229766"
+        charset="utf-8"></script>
+
+
+
+<script type="text/javascript">
+    Util.addScript('https://washmore.github.io/js/page.min.js?1607592229766', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论不能为空",
+        "oId": "1506671979764",
+        "blogHost": "https://washmore.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
+    page.loadRelevantArticles('1506671979764', '<h3>RELEVANT POSTS</h3>');
+Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 3116ms, 2020/12/10 17:25:58 -->

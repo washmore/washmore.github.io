@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>老骥伏枥志在千里,如今的java尚能饭否？ - 洗澡狂魔的技术阵地</title><meta name="description" content="22 岁，对于一个技术人来说可谓正当壮年。但对于一门编程语言来说，情况可能又有不同。各类编程语言横空出世，纷战不休，然而 TIOBE 的语言排行榜上，Java 却露出了明显的颓势。这个老牌的语言，未来会是怎样？"/><meta property="og:description" content="22 岁，对于一个技术人来说可谓正当壮年。但对于一门编程语言来说，情况可能又有不同。各类编程语言横空出世，纷战不休，然而 TIOBE 的语言排行榜上，Java 却露出了明显的颓势。这个老牌的语言，未来会是怎样？"/>    <meta name="keywords" content="洗澡狂魔,Java,博客,开源,程序员"/><link rel="dns-prefetch" href="https://washmore.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://washmore.github.io"><link rel="icon" type="image/png" href="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"/><link rel="apple-touch-icon" href="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"><link rel="shortcut icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="老骥伏枥志在千里,如今的java尚能饭否？ - 洗澡狂魔的技术阵地"/><meta property="og:site_name" content="洗澡狂魔的技术阵地"/><meta property="og:url"      content="https://washmore.github.io/articles/2017/06/22/1498062237103.html?"/><meta property="og:image" content="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"/><link rel="search" type="application/opensearchdescription+xml" title="老骥伏枥志在千里,如今的java尚能饭否？ - 洗澡狂魔的技术阵地" href="/opensearch.xml"><link href="https://washmore.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://washmore.github.io/manifest.json">        <link rel="canonical" href="https://washmore.github.io/articles/2017/06/22/1498062237103.html">        <link rel="stylesheet"
+              href="https://washmore.github.io/skins/Pinghsu/css/base.css?1607592229766"/>
+            <link rel="prev" title="搭建Ogame银河帝国服务器的那些事儿~" href="https://washmore.github.io/articles/2017/06/19/1497871431214.html">
+            <link rel="next" title="他们打败了全世界，却输给了自己的国家！" href="https://washmore.github.io/articles/2017/06/24/1498282794390.html">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+<script>
+console.info('世界上最远的距离,是我说句hello,你却不回world');
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5b4006c85439d5282cd723e64f2761fa";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script src="https://cdn.jsdelivr.net/npm/vditor@3.5.3/dist/js/icons/ant.js" async="" id="vditorIconScript"></script></head>
+<body>
+<header class="header">
+    <div class="wrapper">
+        <a href="https://washmore.github.io" rel="start" class="header__logo">
+            <img src="https://img.hacpai.com/avatar/1466093804169_1492143958695.png?imageView2/1/w/128/h/128/interlace/0/q/100" alt="洗澡狂魔的技术阵地"/>
+            洗澡狂魔的技术阵地
+        </a>
+
+        <nav class="header__nav mobile__none">
+            <a href="https://washmore.github.io/tags.html" rel="section">
+                Tags
+            </a>
+            <a href="https://washmore.github.io/archives.html">
+                Archives
+            </a>
+            <a rel="archive" href="https://washmore.github.io/links.html">
+                Links
+            </a>
+        </nav>
+
+        <div class="header__bar fn__none" onclick="$(this).next().slideToggle()">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#444" d="M0 3h20v2h-20v-2zM0 9h20v2h-20v-2zM0 15h20v2h-20v-2z"></path>
+            </svg>
+        </div>
+        <main class="header__menu fn__none">
+            <ul>
+                    <li>
+                        <a href="https://github.com/washmore" target="_blank" rel="section">
+                            Github
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://family.washmoretech.com" target="_blank" rel="section">
+                            我要记账
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.anxunsi.net/" target="_blank" rel="section">
+                            实力派studio
+                        </a>
+                    </li>
+                <li>
+                    <a href="https://washmore.github.io/tags.html" rel="section">
+                        Tags
+                    </a>
+                </li>
+                <li>
+                    <a href="https://washmore.github.io/archives.html">
+                        Archives
+                    </a>
+                </li>
+                <li>
+                    <a rel="archive" href="https://washmore.github.io/links.html">
+                        Links
+                    </a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://washmore.github.io/rss.xml" rel="section">
+                        RSS
+                    </a>
+                </li>
+            </ul>
+        </main>
+    </div>
+</header>
+<main id="pjax" class="fn__flex-1">
+    
+    <div class="post wrapper wrapper--miner">
+        <h2 class="item__title">
+            <a rel="bookmark" href="https://washmore.github.io/articles/2017/06/22/1498062237103.html">
+                老骥伏枥志在千里,如今的java尚能饭否？
+            </a>
+        </h2>
+        <div class="ft__fade item__meta">
+                Published on
+            <time>
+                Jun 22, 2017
+            </time>
+            with <span data-uvstaturl="https://washmore.github.io/articles/2017/06/22/1498062237103.html">0</span> views
+                and <a href="#b3logsolocomments"><span data-uvstatcmt="1498062237103">0</span> comments</a>
+        </div>
+        <div class="item__tags">
+                <a rel="tag" class="tag tag--0" href="https://washmore.github.io/tags/Java">
+                    <b># Java</b>
+                </a>
+                <a rel="tag" class="tag tag--1" href="https://washmore.github.io/tags/%E5%BC%80%E6%BA%90">
+                    <b># 开源</b>
+                </a>
+                <a rel="tag" class="tag tag--2" href="https://washmore.github.io/tags/%E9%AB%98%E6%95%88">
+                    <b># 高效</b>
+                </a>
+                <a rel="tag" class="tag tag--3" href="https://washmore.github.io/tags/%E7%BC%96%E7%A8%8B">
+                    <b># 编程</b>
+                </a>
+        </div>
+        <div class="vditor-reset">
+            <h2 id="toc_h2_0">写在前面</h2>
+<p>从 1995 年第一个版本发布到现在，Java 语言已经在跌宕起伏中走过了 22 年，最新的 Java 版本也已经迭代到 Java 9。当年 Java 语言的跨平台优势如今看来也只不过是家常小菜，Go、Rust 等语言横空出世，进一步拓宽了编程语言的边界。当年发明 Java 语言的 Sun 公司早已被 Oracle 收购，Oracle 现在也正处于水深火热的云计算浪潮当中，甚至连 Java 之父 James Gosling 也加入了当今世界最大的云计算公司 AWS。</p>
+<p>Java 语言发展的这 20 年也正是全球互联网迅猛发展的 20 年，Java 语言同时也见证了电商浪潮、移动互联网浪潮、大数据浪潮、云计算浪潮，所以在现今各大互联网公司身上都能看到 Java 的身影。</p>
+<p>纵看 Java 语言的发展，不禁让人联想到辛弃疾的一首词：</p>
+<p>千古江山，英雄无觅，孙仲谋处。舞榭歌台，风流总被雨打风吹去。斜阳草树，寻常巷陌，人道寄奴曾住。想当年，金戈铁马，气吞万里如虎。元嘉草草，封狼居胥，赢得仓皇北顾。四十三年，望中犹记，烽火扬州路。可堪回首，佛狸祠下，一片神雅社鼓。凭谁问，廉颇老矣，尚能饭否？</p>
+<p>TIOBE 的语言排行榜显示，自 2016 年初 Java 语言就出现了明显的下颓趋势，开发者社区也出现了一些唱衰 Java 语言的论调，编者心中也有些许疑问：Java 老矣，尚能『饭』否？基于这样的背景，InfoQ 邀请到了 Java 资深专家张建锋来为大家解读 Java 语言的发展现状以及未来。</p>
+<h2 id="toc_h2_1">Java 语言的发展回顾</h2>
+<p>Java 语言源于 1991 年 Sun 公司 James Gosling 领导的的 Ork 项目，1995 年 Sun 公司正式起名为 Java，并提出“Write once, Run anywhere"的口号。</p>
+<p>1996 年 1 月 Java 1.0 发布，提供了一个解释执行的 Java 虚拟机，其时恰逢互联网开始兴起，Java 的 Applet 能在 Mozilla 浏览器中运行，被看作是未来的互联网语言。</p>
+<p>1997 年 2 月 Java 1.1 发布，Java 语言的基本形态基本确定了，比如反射 (reflection), JavaBean, 接口和类的关系等等，一直到今天都保持一致。然而，Java 最初的一些目标，如在浏览器中执行 Applet，以及跨平台的图形界面 Awt 很快遭遇到负面的评价。</p>
+<p>1998 年 12 月，Java 第一个里程碑式的版本，即 Java 1.2 发布了。这个版本使用了 JIT（Just in time）编译器技术，使得语言的可迁移性和执行效率达到最优的平衡，同时 Collections 集合类设计优良，在企业应用开发中迅速得到了广泛使用。Sun 公司把 Java 技术体系分成三个方向，分别是 J2SE（面向桌面和通用应用开发），J2EE（面向企业级应用开发），J2ME（面向移动终端开发）。这个分类影响非常久远，体现出主流语言设计者的思想：针对于不同的应用领域，在形态，API 集合等进行划分。</p>
+<p>2000 年 5 月，Java 1.3 发布，这个版本中 Corba 作为语言级别的分布式对象技术，成为 J2EE 的一个技术前提。J2EE 受到 Corba 的设计的影响较大，早期 EJB 的 Home，接口和实现就是 Corba 在 C 语言的实现，被移植到 Java 语言之中。J2EE 中的 Servlet 规范获得了极大的成功，伴随着互联网的兴起，和浏览器直接通过 HTTP 协议交互的 Servlet，和众多的 MVC 框架，成为 Web1.0 的网红。</p>
+<p>2002 年 2 月，Java 1.4 发布，Java 语言真正走向成熟，提供了非常完备的语言特性，如 NIO，正则表达式，XML 处理器等。同年微软的.NET 框架发布，两者开始了为期十几年的暗自竞争。从语言特性上来说，.NET 后发先至，一直处于优势。但 Java 依赖良好的开发者生态，绝大多数大型软件公司的使用者众多和不断贡献，以及对 Linux 操作系统良好的支持，渐渐的在服务器端获得优势地位。</p>
+<p>2004 年 9 月，Java 5 发布，Sun 不再采用 J2SE, J2EE 这种命名方式，而使用 Java SE 5, Java EE 5 这样的名称。我认为 Java 5 是第二个里程碑式的版本。Java 语言语法发生很大的变化，如注解 (Annotation)，装箱 (Autoboxing)，泛型 (Generic)，枚举 (Enum)，foreach 等被加入，提供了 java.util.concurrent 并发包。Java 5 对于 Java 语言的推动是巨大的，特别是注解的加入，使得语言定义灵活了很多，程序员可以写出更加符合领域定义的描述性程序。</p>
+<p>2006 年 5 月， JavaEE 5 发布，其中最主要是 EJB3.0 的版本升级。在此之前，EJB2.X 版本被广泛质疑，SpringFramework 创建者 Rod Johnson 在经典书籍“J2EE Development without EJB“中，对 EJB2 代表的分布式对象的设计方法予以批驳。EJB3 则重新经过改造，使用注解方式，经过应用服务器对 POJO 对象进行增强来实现分布式服务能力。在某种程度，可以说 EJB3 挽救了 JavaEE 的过早消亡。</p>
+<p>2006 年 12 月，Java 6 发布，这个语言语法改进不多，但在虚拟机内部做了大量的改进，成为一个相当成熟稳定的版本，时至今日国内的很多公司依然以 Java6 作为主要 Java 开发版本来使用。同年 Sun 公司做出一个伟大的决定，将 Java 开源。OpenJDK 从 Sun JDK 1.7 版本分支出去，成为今天 OpenJDK 的基础。OpenJDK6 则由 OpenJDK7 裁剪而来，目前由红帽负责维护，来满足 Redhat Enterprise Linux 6.X 用户的需要。</p>
+<p>2009 年 12 月，JavaEE 6 发布，这个版本应该说是 JavaEE 到目前为止改进最大影响最深远的一个版本。因为 JavaEE5 只有 EJB3 适应了 Java 注解语法的加入，而 EE6 全面接纳了注解。CDI 和 BeanValidation 规范的加入，在 POJO 之上可以定义完备的语义，由容器来决定如何去做。Servlet 也升级到 3.0 版本，并在接口上加入异步支持，使得系统整体效率可以大幅提高。EE 划分为 Full Profile 和 Web Profile，用户可以根据自己的需要选择不同的功能集。</p>
+<p>在此之前，Oracle 已经以 74 亿美金的价格收购了 Sun 公司，获得了 Java 商标和 Java 主导权。也收购了 BEA 公司，获得市场份额最大的应用服务器 Webogic。JavaEE 6 虽然是收购之后发布的版本，但主要的设计工作仍然由原 Sun 公司的 Java 专家完成。</p>
+<p>2011 年 7 月，Oracle 发布 Java 7, 其中主要的特性是 NIO2 和 Fork/Join 并发包，尽管语言上没有大的增强，但我个人认为，自从 Oracle JDK（包括 OpenJDK7），Java 虚拟机的稳定性真正做到的工业级，成为一个计算平台而服务于全世界。</p>
+<p>2013 年 6 月，Oracle 发布 JavaEE 7，这个版本加入了 Websocket，Batch 的支持，并且引入 Concurrency 来对服务器多线程进行管控。然而所有的子规范，算上可选项 (Optional) 总共有 40 多项，开发者光是阅读规范文本就很吃力了，更不要说能够全局精通掌握。JavaEE 规范的本质是企业级应用设计的经验凝结，每一个 API 都经过众多丰富经验的专家反复商议并确定。各个版本之间可以做到向后兼容，也就是说，即使是 10 年前写的 Servlet 程序，当前的开发者也可以流畅的阅读源码，经过部分代码调整和配置修改，可以部署在当今的应用服务器上。反过来，今后用 Servlet4 写的程序，浏览器和服务器通信使用全新的 HTTP/2 协议，但程序员在理解上不会有障碍，就是因为 Servlet 规范的 API 非常稳定，基本没有大的变化修改。</p>
+<p>2014 年 3 月，Oracle 发布 Java 8，这个版本是我认为的第三个有里程碑意义的 Java 版本。其中最引人注目的便是 Lambda 表达式了，从此 Java 语言原生提供了函数式编程能力。语言方面大的特性增加还有：Streams，Date/Time API, 新的 Javascript 引擎 Nashorn，集合的并行计算支持等，Java8 更加适应海量云计算的需要。</p>
+<p>按照原来的计划，Java9 应该在今年 7 月发布，但因为模块化 (JPMS) 投票未通过的原因，推迟到今年 9 月份发布。</p>
+<p>JavaEE 8 也会在今年发布，预计的时间在 8-10 月。其中最主要更新是 Servlet 4.0 和 CDI 2.0，后者已经完成最终规范的发布和投票。</p>
+<h2 id="toc_h2_2">Java 社区情况介绍</h2>
+<p>我们按照两个方面介绍 Java 社区情况。</p>
+<p>Java User Group(JUG，Java 用户组) 目前全世界范围有 100 多个 JUG 组织，分布在各个大洲各个国家，一般来说以地域命名。目前最有影响力的两个 JUG 分别是伦敦的 LJC(London Java Community) 和巴西的 SouJava，目前都是 JCP 的 EC(执行委员会) 成员。国内目前有 GreenTea JUG(北京和杭州)，Shanghai JUG，GuangDong JUG, Shenzhen JUG, Nanjing JUG 等。GreanTeaJUG 以阿里巴巴研发部门成员为核心，包括北京和杭州两地各个公司从事 Java 开发的研发人员，过去几年成功举办了很多有业界影响力的活动，特别是邀请到众多国外的 Java 技术专家来分享知识，目前是国内最大的 JUG 开发者组织。</p>
+<p>Java 开源社区 Java 是一门开放的语言，其开源社区也是参与者众多。最有名的应当数 Apache 社区，目前已经拥有近 200 个顶级项目，其中绝大多数是 Java 语言项目。在 Java 生态圈中，具有重要地位的如 Ant、Commons、Tomcat、Xerces、Maven、 Struts、Lucene、ActiveMQ、CXF、Camel、Hadoop 等等。很多技术时代，一大批 Java 项目加入，如 Web 时代的 Velocity、Wicket；JavaEE 相关的 Tomee、OpenJPA、OpenWebBeans、Myfaces；WebService 时代的 jUDDI、Axis、ServiceMix；Osgi 时期的 Flex、Karaf；大数据时代的 HBase、Hive、ZooKeeper、Cassandra；云时代的 Mesos、CloudStack 等等。</p>
+<p>涉及到软件开发的方方面面，可以说当今几乎所有的中型以上 Java 应用中，都会有 Apache 开源项目的身影。国内最早参与 Apache 社区的以国外软件公司国内研发团队成员为主，如红帽、IONA、Intel、IBM 研发中心等。如今国内互联网公司和软件公司也不断的参与，特别是开始主导一些 Apache 项目，如 Kylin 等。</p>
+<p>JBoss 开源社区，包含了 50 多个 Java 开源项目，其中有 Hibernate、Drools、jBPM 等业界知名开源项目，也有 Undertow、Byteman、Narayana 等名气不算大，但绝对是相应领域业界的顶级优秀项目。当前 JBoss 开源社区主要以企业应用中间件软件为主，RedHat 是主要的技术贡献力量。</p>
+<p>Eclipse 开源社区，之前主要是包含 Eclipse IDE 的项目，后来也逐步进行多方面的扩展，比如 OSGi，服务器等，目前一些知名 Java 项目，如 Jetty、Vertx 等都是 Eclipse 开源组织成员。此外 IOT 目前是 Eclispe 的一个重点方向，在这里可以找到完整的 IOT Java 开发方案。</p>
+<p>Spring 开源社区，以 SpringFramework 为核心，包括 SpringBoot、SpringCloud、SpringSecurity、SpringXD 等开源项目，在国内有广泛的应用场景。</p>
+<h2 id="toc_h2_3">目前大的玩家</h2>
+<p>Java 语言和品牌都是 Oracle 公司所有，所以 Oracle 公司是 Java 最主要的厂商。绝大多数 JSR(Java 规范提案) 的领导者都是 Oracle 的雇员。</p>
+<p>Java 是一个庞大的生态圈，全世界的软件和互联网公司绝大多数都是 Java 用户，同时也可以参与推动 Java 语言的发展。任何组织或者个人都可以加入 JCP（Java Community Process），并提交 JSR 来给 JavaSE，JavaEE，JavaME 等提交新的 API 或者服务定义。Java 拥有当今最完备的语言生态，几乎所有能想到的应用范围，都有软件厂商提出过标准化的构想，其中很多已经被接纳为 JSR 提案。如今 JSR 总数已经都 400 多个。</p>
+<p>JCP 是发展 Java 的国际组织，其中的执行委员会（EC）以投票的形式对 JSR 提案进行表决。目前 EC 包括 16 个合约 (Ratified) 席位，6 个选举 (Elected) 席位和 2 个合伙 (Associate) 席位，以及 Oracle 作为所有者的永久席位。非永久席位每两年重新选举一次，每次选举为 24 个席位的一半，即为 12 个。</p>
+<p>当前 EC 委员会中，对于 Java 起到最重要作用的，无疑是 Oracle，IBM 和 Redhat 三家公司。Oracle 自然不用说；Redhat 领导着 JavaEE8 中两项 JSR，并且在操作系统，Linux，虚拟化，云计算等基础软件方面是产品领导者；IBM 是软硬件最大的厂商，拥有自己的 Unix 操作系统和 JDK 版本。这三家软件厂商也是中间件厂商的强者，它们对于 Java 的影响是至关重要的。前不久投票被否决的 JSR 376(JPMS) 模块化提案，就是 Redhat 和 IBM 先后表示要投反对票，最后才没有通过的。</p>
+<p>另外的几个重要的 Java 参与方分别包括：巨型互联网公司，以 Twitter 为代表；大型金融公司，以高盛，瑞信为代表；强大的硬件产商，Intel，NXP，Gemalto 等；大型系统方案厂商，HP， Fijitsu；当然还有掌握先进 Java 技术的公司，如 Azul，Hazelcast，Tomitribe，Jetrains 等等。这些公司共同对 Java 的发展起到关键作用。</p>
+<h2 id="toc_h2_4">GC 方面的进展</h2>
+<p>JDK 中主要的 GC 分类有：</p>
+<ul>
+<li>
+<p>Serial，单线程进行 GC，在它进行垃圾收集时，必须暂停其他所有的工作线程，直到它收集结束。</p>
+</li>
+<li>
+<p>Parallel，相比 Serial 收集器，Parallel 最主要的优势在于使用多线程去完成垃圾清理工作，这样可以充分利用多核的特性，大幅降低 GC 时间。</p>
+</li>
+<li>
+<p>CMS(Concurrent Mark-Sweep)，是以牺牲吞吐量为代价来获得最短回收停顿时间的垃圾回收器。实现 GC 线程和应用线程并发工作，不需要暂停所有应用线程。</p>
+</li>
+<li>
+<p>G1(Garbage First Garbage Collector)，G 设计初衷是为了尽量缩短处理超大堆（大于 4GB）时产生的停顿。相对于 CMS 的优势而言是内存碎片的产生率大大降低。</p>
+</li>
+</ul>
+<p>目前在 JDK8 中以上 4 种 GC 都可以使用，而在 JDK9 中 G1 GC 会成为默认的垃圾收集器。</p>
+<p>在 OpenJDK 方面，Redhat 开源并贡献了 Shenandoah GC。这是一种新的 Java 虚拟机 GC 算法，目标是利用现代多核 CPU 的优势，减少大堆内存在 GC 处理时产生的停顿时间。在使用大内存的应用上使用，如&gt;20G 堆空间。Fedora24 以后，官方源中的 OpenJDK 即带有 Shenandoah 算法，不过 JDK9 中还不会被加入。</p>
+<p>无停顿的高性能 GC 就是 Azul 公司的 C4(Continuously Concurrent Compacting Collector) GC 了，但只提供商业版本使用。</p>
+<p>另外 IBM J9 中 Balanced GC，表现也很出色，能够保证相对一致的暂停时间而避免破坏性的长时间停顿。Balanced GC 应用在各类 IBM 中间件产品之中。</p>
+<h2 id="toc_h2_5">Java 9 目前已经可以确认的特性介绍</h2>
+<p>Java9 中，最受人关注的新特性就是 Jigsaw 项目带来的模块化技术特性。</p>
+<p>Java 语言一直缺乏语言级别的模块化能力，目前模块化技术通过 OSGi, JBoss Modules 等项目，已经在服务端程序得到了广泛的应用。Java 在语言级别引入模块化能力，将极大的促进 Java 应用程序组件化，模块化的改变。应用程序通过模块化拆分，可以做到更灵活的引入，加载，移除组件，占用更少的内存，更适合云计算时代的要求。在 JDK9 EA（预览版）中，原有的 rt.jar 已经被划分为若干了 jmod，通过模块内的 module-info.java 文件来声明模块间的引用关系。</p>
+<p>然而，模块化改造是个渐进而适度的过程，Java9 为了可兼容 Java8 以前应用程序的运行，做出很多的让步，模块定义严格性没有那么苛刻。各个厂商也有对自己现有系统可无缝运行在 Java9 上的商业诉求。Java 模块化提案还得花更多的时间去讨论和修改。</p>
+<p>Java9 中的 jshell 工具实现了 REPL，即读取，求值，打印，循环。这个工具可以使得开发者交互式的使用 Java，方便于系统管理，调试，使用。可以想像到有了 jshell 后，Java 语言更加适合初学者入门学习。</p>
+<p>Jlink 工具和 AOT（预先编译技术）。一直以来，Java 运行方式是把程序编译成 class 文件，然后通过 jvm 运行的。这种工作方式可以做到跨平台移植，在互联网时代初期，各种 Unix 繁荣和 Windows 在桌面的一统局面下，对于占据市场起到决定性作用。</p>
+<p>然而到了今天，无论是大型互联网公司还是企业内部，x86 平台 64 位服务器已经成为主要的选择。从运行效率考虑，可以把 java 程序编译成可执行的二进制文件，更加适应云计算和容器技术发展的需要。</p>
+<p>利用 jlink/jaotc 工具，可以把一个 Java 程序编译成可执行文件，在 Java9 推出时，可能只有 java.base 模块支持 AOT。</p>
+<p>安全方面的加强。引入新的摘要算法 SHA-3，内置 ALPN 使得更好的支持 HTTP/2 协议，提供 DTLS（数据包传输层安全性协议），可以保证 UDP 数据传输的安全，PKCS12 格式替代原有的 JKS 成为 keystore 的默认格式。</p>
+<p>此外，统一 JVM 日志 (Unified JVM Logging)，多版本共存 jar(Multi-release jar files)，接口内部的私有方法 (Interface provate method) 等也是非常重要的新特性。</p>
+<h2 id="toc_h2_6">与其他语言的对比，Java 的优势</h2>
+<p>Java 是最好的语言么？不是，因为在每个领域都有更合适的编程语言。</p>
+<p>C 语言无疑是现代计算机软件编程语言的王者，几乎所有的操作系统都是 C 语言写成的。C++ 是面向对象的 C 语言，一直在不断的改进。</p>
+<p>JavaScript 是能运行在浏览器中的语言，丰富的前端界面离不开 Javascript 的功劳。近年来的 Node.js 又在后端占有一席之地。Python 用于系统管理，并通过高性能预编译的库，提供 API 来进行科学计算，文本处理等，是 Linux 必选的解释性语言。</p>
+<p>Ruby 强于 DSL（领域特定语言），程序员可以定义丰富的语义来充分表达自己的思想。Erlang 就是为分布式计算设计的，能保证在大规模并发访问的情况下，保持强壮和稳定性。Go 语言内置了并发能力，可以编译成本地代码。当前新的网络相关项目，很大比例是由 Go 语言编写的，如 Docker、Kubernetes 等。</p>
+<p>编写网页用 PHP，函数式编程有 Lisp，编写 iOS 程序有 Swift/ObjectiveC。</p>
+<p>一句话概括，能留在排行榜之上的语言，都是好的语言，在其所在的领域能做到最好。</p>
+<p>那么，Java 语言到底有什么优势可以占据排行榜第一的位置呢？</p>
+<p>其一，语法比较简单，学过计算机编程的开发者都能快速上手。</p>
+<p>其二，在若干了领域都有很强的竞争力，比如服务端编程，高性能网络程序，企业软件事务处理，分布式计算，Android 移动终端应用开发等等。</p>
+<p>最重要的一点是符合工程学的需求，我们知道现代软件都是协同开发，那么代码可维护性，编译时检查，较为高效的运行效率，跨平台能力，丰富的 IDE，测试，项目管理工具配合。都使得 Java 成为企业软件公司的首选，也得到很多互联网公司的青睐。</p>
+<p>没有短板，容易从市场上找到 Java 软件工程师，软件公司选择 Java 作为主要开发语言，再在特定的领域使用其他语言协作编程，这样的组合选择，肯定是不会有大的问题。</p>
+<p>所以综合而言，Java 语言全能方面是最好的。</p>
+<h2 id="toc_h2_7">Java 未来方向的展望</h2>
+<p>如今的 Java，已经在功能上相当丰富了，Java 8 加入 Lambda 特性，Java 9 加入模块化特性之后，重要的语言特性似乎已经都纳入进来。如果要说值得考虑的一些功能，我觉得有以下几点：</p>
+<p>模块化改造完毕之后，可能会出现更多专业的 JDK 发行软件商，提供在功能方面，比如针对于分布式计算，机器学习，图形计算等，纳入相关的功能库作为文件。这样专业行业客户可以选择经过充分优化后的 JDK 版本。</p>
+<p>Java 语义上对“模式匹配”有更强的支持，如今的 switch 语句能力还是比较欠缺，可以向 Erlang， Scala 等语言借鉴。</p>
+<p>多线程并发处理，Java 做的已经很好了。不过我个人觉得可以在多进程多线程配合，以及语言级别数据管道表示上，可以进行改造和优化。</p>
+<p>JDK9 会有 HTTP/2 client 端的能力，但毫无疑问会有更多更好的三方库出现，JDK 可以和这些三方库通力合作，提供一个更好 API 界面和 SPI 参考实现。</p>
+<p>目前 Java 在云计算方面遇到的最大问题还是占用内存过大。我个人认为从两个方面来看：</p>
+<ul>
+<li>
+<p>如果该应用的确是长时间运行的服务，可以考虑结构清晰的单体结构，算下来总的内存消耗并不会比多个微服务进程占用的更多。</p>
+</li>
+<li>
+<p>微服务应用，未来可以采用编译成本地代码的方式，并使用优化过的三方库，甚至本地 so 文件，减少单个进程的过多内存占用。</p>
+</li>
+<li>
+<p>安全框架更加清晰，SPI 可以允许三方库提供更强大更高效的安全功能。</p>
+</li>
+<li>
+<p>JavaEE 方向则有更多的改进的地方：</p>
+</li>
+<li>
+<p>EJB 重构目前的 Corba 分布通信基础，参考 gRPC 进行远程系统调用。</p>
+</li>
+<li>
+<p>分解 EJB 规范，把 JVM 进程相关的特性，如注入 / 加强 / 事务 / 安全都统一到 CDI 规范中；对 EJB 进行裁剪，保留远程访问特性和作为独立执行主体分布式对象能力。</p>
+</li>
+<li>
+<p>加强 JMS 和 MDB，媲美 Akka 目前的能力。</p>
+</li>
+<li>
+<p>JaxRS 适度优化，不必要依赖 Servlet，或者适度调整，来提供更大的能力。</p>
+</li>
+<li>
+<p>JPA 借鉴 JDO，以及融入一部分特性，做到对 NoSQL 更良好的支持。</p>
+</li>
+</ul>
+<h2 id="toc_h2_8">一些个人的心得和经验分享</h2>
+<p>软件业有个 Hype Cycle 模型，有很多技术受到市场的追捧而成为明星，也有些身不逢时而备受冷漠。</p>
+<p>EJB 是一个广泛被误解的技术，在企业应用分布式计算方面，EJB 给出了非常完备的技术体系。只是目前所有的应用服务器都实现的不够好。对于目前打算转型微服务设计的架构师，EJB 也是一个非常值得学习借鉴的技术。</p>
+<p>Java 的慢是相对的，有些是当前实现的不够好。比如原来有人对 Java 的网络 IO 性能提出质疑，然而稳定的 Netty 框架出现后，就没有人再怀疑 Java 处理网络 IO 的能力了，甚至在 JDK8 中自身的 NIO 也相当出色。要知道 Java 为了实现跨平台能力，采用的是各个操作系统的一个公共能力子集，而且其设计哲学就是给出 API 框架，实现是可以自行实现和加载服务的。</p>
+<p>Java 在处理界面方面，Swing 和 Swt 表现可圈可点（Idea 和 Eclipse 分别采用的图形基础库），JavaFX 已经运用到很多的行业软件上。在浏览器界面表现上，SpringMVC 在模板渲染页面方面使用者最多；GWT 似乎使用者不多，但基于 GWT 的 Vaddin 在国外企业中用户众多，而且很多服务器管理软件也用 GWT 写成；JSF 也在企业软件中得到广泛使用，状态信息直接在后端进行管理，配合 js 前端框架，可以充分发挥各种技术的优势。</p>
+<p>CDI 规范和 SpringFramework 在服务器程序中作用类似，Spring 是一套设计优良，完备的框架，CDI 具有更强的可扩展性。通过对注解的语义定义，一家公司可以维护一套自己的组件描述语言，来做到产品和项目之间的软件快速复用。CDI 是定义软件组件内部模型的最佳方式，只可惜了解的软件工程师实在太少。</p>
+<p>微服务架构在互联网应用，快速开发运维管理方面，配合容器技术使用，有很强的优势。但并不是所有的应用场景都适合微服务：强事务应用系统，采用单体结构的软件体系设计，更容易从整体方面维护，也能获得更优的性能。Java 语言无论在微服务还是单体结构，都有成熟稳定的软件架构供选择使用。</p>
+<p>转自 <a href="http://www.cnn6.net/html/java/2017621/202119.html" target="_blank">老骥伏枥志在千里,如今的java尚能饭否？</a></p>
+        </div>
+    </div>
+    <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h2">
+            <a href="#toc_h2_0">写在前面</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_1">Java 语言的发展回顾</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_2">Java 社区情况介绍</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_3">目前大的玩家</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_4">GC 方面的进展</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_5">Java 9 目前已经可以确认的特性介绍</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_6">与其他语言的对比，Java 的优势</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_7">Java 未来方向的展望</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_8">一些个人的心得和经验分享</a>
+        </li>
+</ul>    </div>
+    <div class="body--gray post__gray">
+        <div class="wrapper comment">
+                <div id="gitalk-container" style="padding: 30px 0;"></div>
+                <div id="b3logsolocomments"></div>
+                <div id="vcomment" style="padding: 30px 0;" data-name="washmore" data-postId="1498062237103"></div>
+
+            <div class="post__list fn__flex">
+                <div class="fn__flex-1">
+                    <div id="externalRelevantArticles"></div>
+                </div>
+                <div class="post__list-mid fn__flex-1">
+                    <div id="randomArticles"></div>
+                </div>
+                <div class="fn__flex-1">
+                    <div id="relevantArticles"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post__fix">
+        <div class="wrapper">
+            <span class="post__share mobile__none">
+                Share
+                <span class="tag tag--4" data-type="weibo">WeiBo</span>
+                <span class="tag tag--5" data-type="twitter">Twitter</span>
+                <span class="tag tag--6" data-type="qqz">QZone</span>
+                <span class="post__code tag tag--7"
+                      data-type="wechat"
+                      data-title="老骥伏枥志在千里,如今的java尚能饭否？"
+                      data-blogtitle="洗澡狂魔的技术阵地"
+                      data-url="https://washmore.github.io/articles/2017/06/22/1498062237103.html"
+                      data-avatar="https://img.hacpai.com/avatar/1466093804169_1492143958695.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+                    WeChat
+                    <span class="qrcode"></span>
+                </span>
+            </span>
+            <span class="post__arrow">
+                    <a href="https://washmore.github.io/articles/2017/06/19/1497871431214.html" rel="prev"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="搭建Ogame银河帝国服务器的那些事儿~"
+                       aria-label="旧一篇: 搭建Ogame银河帝国服务器的那些事儿~">←</a>
+
+                    <a href="https://washmore.github.io/articles/2017/06/24/1498282794390.html" rel="next"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="他们打败了全世界，却输给了自己的国家！"
+                       aria-label="新一篇: 他们打败了全世界，却输给了自己的国家！">→</a>
+                <a href="javascript:Util.goTop()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到顶部">↑</a>
+                <a href="javascript:Util.goBottom()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到底部">↓</a>
+            </span>
+        </div>
+    </div>
+    
+</main>
+<footer class="footer">
+    <div class="ft__center">
+    <a href="https://ld246.com/member/washmore"
+       aria-label="https://ld246.com/member/washmore"
+       class="vditor-tooltipped__n vditor-tooltipped  user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/washmore"
+           aria-label="https://github.com/washmore"
+           class="vditor-tooltipped__n vditor-tooltipped  user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+    </div>
+    <nav class="footer__nav mobile__none">
+            <a class="ft__link" href="https://github.com/washmore" target="_blank" rel="section">
+                Github
+            </a>
+            <a class="ft__link" href="https://family.washmoretech.com" target="_blank" rel="section">
+                我要记账
+            </a>
+            <a class="ft__link" href="https://www.anxunsi.net/" target="_blank" rel="section">
+                实力派studio
+            </a>
+        <a class="ft__link" rel="alternate" href="https://washmore.github.io/rss.xml" rel="section">RSS</a>
+    </nav>
+    <div class="footer__border mobile__none"></div>
+    <div class="wrapper fn__flex">
+        <div class="fn__flex-1 mobile__none">
+            <div class="ft__fade">washmore - 世界上最远的距离,是我说句hello,你却不回world</div>
+            <br>
+                资深Java搬运工,Vue&React全家桶...
+        </div>
+
+
+        <div class="fn__flex-1 footer__copyright">
+            <a class="ft__link" href="https://washmore.github.io/archives.html">
+                61
+                文章
+            </a>
+           <br>
+            <span data-uvstaturl="https://washmore.github.io">355649</span> <span class="ft-gray">浏览</span>
+ <br>
+            &copy; 2020
+            <a class="ft__link" href="https://washmore.github.io">洗澡狂魔的技术阵地</a>
+            &nbsp;|&nbsp;本网站使用<a href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=i8m75zfp" target="_blank">阿里云</a>服务器,<a href="https://www.anxunsi.net" target="_blank">实力派工作室</a>技术支持&nbsp;|&nbsp;<a href="http://www.beian.miit.gov.cn/" target="_blank">湘ICP备19012122号</a>
+<script type='text/javascript'>
+	window.onload = function () {
+	    $(function () {
+            $('body > div.wrapper > div > aside > section > div.module').first(). before('<div class="module" id="qrcode_gzh" style="display:none;"><header><h2>扫码关注公众号</h2></header><main><img src="https://file.washmoretech.com/qrcode_gzh.jpg"/></main></div>');
+            $('#qrcode_gzh').slideDown("slow");
+   $('body > div.wrapper > div > aside > section > div.module> header > h2').first(). each(function(i){
+                    $(this).html($(this).html()+"&nbsp;&nbsp;<a href='javascript:void(0);' class='support_washmore' style='color:red;'>->打赏一下(点我嘛)<-</a>");
+                });
+                $('body > div.wrapper > div > main > article > header.title:first'). prepend('<h2 style="text-align:center;font-size:26px;"><a href="javascript:void(0);"   class="support_washmore"   title="点我,点我,快点我嘛~!">如果觉得我的文章对您有用,考虑随意打赏点呗~</a></h2>');           
+
+
+            $.getScript("https://file.washmoretech.com/jquery.support.1.0.0.js", function(){
+            });
+                    $('a').each(function(){
+				if($(this).attr('href') && $(this).attr('href').indexOf('http')==0 && $(this).attr('href').indexOf('blog.washmore')==-1){
+					$(this).attr("target","_blank");
+				}
+		    });
+               
+            });
+	}
+</script>
+
+        </div>
+    </div>
+</footer>
+<script>
+  var Label = {
+    speech: true,
+    servePath: "https://washmore.github.io",
+    staticServePath: "https://washmore.github.io",
+    luteAvailable: false,
+    hljsStyle: 'github',
+    langLabel: "zh_CN",
+    version: "4.3.1",
+    staticSite: true,
+    showCodeBlockLn: false,
+    articleId: "1498062237103",
+  }
+</script>
+<script type="text/javascript" src="https://washmore.github.io/skins/Pinghsu/js/headroom.min.js"></script>
+<script type="text/javascript"
+        src="https://washmore.github.io/skins/Pinghsu/js/common.min.js?1607592229766"
+        charset="utf-8"></script>
+
+
+
+<script type="text/javascript">
+    Util.addScript('https://washmore.github.io/js/page.min.js?1607592229766', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论不能为空",
+        "oId": "1498062237103",
+        "blogHost": "https://washmore.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
+    page.loadRelevantArticles('1498062237103', '<h3>RELEVANT POSTS</h3>');
+Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 3004ms, 2020/12/10 17:26:23 -->

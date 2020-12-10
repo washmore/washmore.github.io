@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>永远不要使用双花括号初始化实例!!! - 洗澡狂魔的技术阵地</title><meta name="description" content="Map source = new HashMap(){{
+    put(&quot;firstName&quot;, &quot;John&quot;);
+    put(&quot;lastName&quot;, &quot;Smith&quot;);
+    put(&quot;organizations&quot;, new HashMap(){{
+        put(&quot;it&quot;, new HashMap(){{
+            put(&quot;id&quot;, &quot;1234&quot;);
+        }});
+        put(&quot;oa&quot;, new HashMap(){{
+            put(&quot;id&quot;, &quot;5678&quot;);
+        }});
+    }});
+}};"/><meta property="og:description" content="Map source = new HashMap(){{
+    put(&quot;firstName&quot;, &quot;John&quot;);
+    put(&quot;lastName&quot;, &quot;Smith&quot;);
+    put(&quot;organizations&quot;, new HashMap(){{
+        put(&quot;it&quot;, new HashMap(){{
+            put(&quot;id&quot;, &quot;1234&quot;);
+        }});
+        put(&quot;oa&quot;, new HashMap(){{
+            put(&quot;id&quot;, &quot;5678&quot;);
+        }});
+    }});
+}};"/>    <meta name="keywords" content="洗澡狂魔,Java,博客,开源,程序员"/><link rel="dns-prefetch" href="https://washmore.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://washmore.github.io"><link rel="icon" type="image/png" href="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"/><link rel="apple-touch-icon" href="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"><link rel="shortcut icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="永远不要使用双花括号初始化实例!!! - 洗澡狂魔的技术阵地"/><meta property="og:site_name" content="洗澡狂魔的技术阵地"/><meta property="og:url"      content="https://washmore.github.io/articles/2017/06/27/1498563330053.html?"/><meta property="og:image" content="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"/><link rel="search" type="application/opensearchdescription+xml" title="永远不要使用双花括号初始化实例!!! - 洗澡狂魔的技术阵地" href="/opensearch.xml"><link href="https://washmore.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://washmore.github.io/manifest.json">        <link rel="canonical" href="https://washmore.github.io/articles/2017/06/27/1498563330053.html">        <link rel="stylesheet"
+              href="https://washmore.github.io/skins/Pinghsu/css/base.css?1607592229766"/>
+            <link rel="prev" title="他们打败了全世界，却输给了自己的国家！" href="https://washmore.github.io/articles/2017/06/24/1498282794390.html">
+            <link rel="next" title="hack小技巧解决solo的md解析器[]()语法不支持新窗口(标签)打开页面功能" href="https://washmore.github.io/articles/2017/07/06/1499310990066.html">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+<script>
+console.info('世界上最远的距离,是我说句hello,你却不回world');
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5b4006c85439d5282cd723e64f2761fa";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script src="https://cdn.jsdelivr.net/npm/vditor@3.5.3/dist/js/icons/ant.js" async="" id="vditorIconScript"></script></head>
+<body>
+<header class="header">
+    <div class="wrapper">
+        <a href="https://washmore.github.io" rel="start" class="header__logo">
+            <img src="https://img.hacpai.com/avatar/1466093804169_1492143958695.png?imageView2/1/w/128/h/128/interlace/0/q/100" alt="洗澡狂魔的技术阵地"/>
+            洗澡狂魔的技术阵地
+        </a>
+
+        <nav class="header__nav mobile__none">
+            <a href="https://washmore.github.io/tags.html" rel="section">
+                Tags
+            </a>
+            <a href="https://washmore.github.io/archives.html">
+                Archives
+            </a>
+            <a rel="archive" href="https://washmore.github.io/links.html">
+                Links
+            </a>
+        </nav>
+
+        <div class="header__bar fn__none" onclick="$(this).next().slideToggle()">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="#444" d="M0 3h20v2h-20v-2zM0 9h20v2h-20v-2zM0 15h20v2h-20v-2z"></path>
+            </svg>
+        </div>
+        <main class="header__menu fn__none">
+            <ul>
+                    <li>
+                        <a href="https://github.com/washmore" target="_blank" rel="section">
+                            Github
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://family.washmoretech.com" target="_blank" rel="section">
+                            我要记账
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.anxunsi.net/" target="_blank" rel="section">
+                            实力派studio
+                        </a>
+                    </li>
+                <li>
+                    <a href="https://washmore.github.io/tags.html" rel="section">
+                        Tags
+                    </a>
+                </li>
+                <li>
+                    <a href="https://washmore.github.io/archives.html">
+                        Archives
+                    </a>
+                </li>
+                <li>
+                    <a rel="archive" href="https://washmore.github.io/links.html">
+                        Links
+                    </a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://washmore.github.io/rss.xml" rel="section">
+                        RSS
+                    </a>
+                </li>
+            </ul>
+        </main>
+    </div>
+</header>
+<main id="pjax" class="fn__flex-1">
+    
+    <div class="post wrapper wrapper--miner">
+        <h2 class="item__title">
+            <a rel="bookmark" href="https://washmore.github.io/articles/2017/06/27/1498563330053.html">
+                永远不要使用双花括号初始化实例!!!
+            </a>
+        </h2>
+        <div class="ft__fade item__meta">
+                Updated on
+            <time>
+                Jun 28, 2017
+            </time>
+            with <span data-uvstaturl="https://washmore.github.io/articles/2017/06/27/1498563330053.html">0</span> views
+                and <a href="#b3logsolocomments"><span data-uvstatcmt="1498563330053">0</span> comments</a>
+        </div>
+        <div class="item__tags">
+                <a rel="tag" class="tag tag--0" href="https://washmore.github.io/tags/Java">
+                    <b># Java</b>
+                </a>
+                <a rel="tag" class="tag tag--1" href="https://washmore.github.io/tags/%E4%BB%A3%E7%A0%81">
+                    <b># 代码</b>
+                </a>
+                <a rel="tag" class="tag tag--2" href="https://washmore.github.io/tags/%E7%BC%96%E7%A8%8B">
+                    <b># 编程</b>
+                </a>
+        </div>
+        <div class="vditor-reset">
+            <h2 id="toc_h2_0">说在前面</h2>
+<p>一段时间以来,经常发现有人使用类似如下代码装逼耍酷</p>
+<pre><code>Map source = new HashMap(){{
+    put("firstName", "John");
+    put("lastName", "Smith");
+    put("organizations", new HashMap(){{
+        put("it", new HashMap(){{
+            put("id", "1234");
+        }});
+        put("oa", new HashMap(){{
+            put("id", "5678");
+        }});
+    }});
+}};
+</code></pre>
+<p>我们称之为双花括号初始化(构造)实例,看起来是挺酷的!</p>
+<p>如果你对这个语法只是拿来用过,知其然不知其所以然,没关系,实际上它挺简单的,一共做了两件事</p>
+<ul>
+<li>使用下面的代码实例化一个继承自Map的匿名类</li>
+</ul>
+<pre><code>	new HashMap(){} 
+</code></pre>
+<ul>
+<li>然后使用下面的代码 继续实例化一个匿名类</li>
+</ul>
+<pre><code>{
+	put("id", "1234");
+}
+</code></pre>
+<p>原理详见Oracle官方文档:<a href="https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html" target="_blank">Initializing Fields</a></p>
+<p>实际上,这就是一个执行构造函数的过程~</p>
+<h2 id="toc_h2_1">为什么需要拒绝以这种方式初始化实例?</h2>
+<h3 id="toc_h3_2">可读性 --这是最不重要的一个原因</h3>
+<p>双括号初始化实例的代码片段对于没有接触过的人来看,很难直观的理解他的作用,起码,从语法上来讲,就觉得别扭(虽然写的人挺爽);</p>
+<h3 id="toc_h3_3">每个实例一个类型</h3>
+<p>看起来,这段代码只是一个简单的实例化对象的过程,除此之外,什么事情都没有发生 ,实际上,他同时也会创建一个不可复用的(匿名内部)类!<br>
+如果你只是偶尔这么做一次,那还勉强可以接受,如果你在一个体量庞大的企业级应用中大范围的使用这种做法,那对ClassLoader来说简直就是灾难,他需要在堆内存中为这些生成的所有的匿名内部类保持一个引用!<br>
+如果你不信的话,你尝试建一个Test类,然后copy上面的代码,然后编译,你就会发现生成了如下文件:</p>
+<pre><code>Test$1$1$1.class
+Test$1$1$2.class
+Test$1$1.class
+Test$1.class
+Test.class
+</code></pre>
+<p>holy shit!并不是你想象中理所当然的就一个Test类的class...</p>
+<h3 id="toc_h3_4">最重要的原因是这样做会导致内存泄漏!!!</h3>
+<p>这是所有匿名内部类都有的一个致命的问题--<strong>他们会在内部维护一个外部容器类的引用</strong>,想像一下,你在一个庞大的应用中创建了一个如下代码类:</p>
+<pre><code>public class ReallyHeavyObject {
+ 
+    // Just to illustrate...
+    private int[] tonsOfValues;
+    private Resource[] tonsOfResources;
+ 
+    // This method almost does nothing
+    public void quickHarmlessMethod() {
+        Map source = new HashMap(){{
+            put("firstName", "John");
+            put("lastName", "Smith");
+            put("organizations", new HashMap(){{
+                put("0", new HashMap(){{
+                    put("id", "1234");
+                }});
+                put("abc", new HashMap(){{
+                    put("id", "5678");
+                }});
+            }});
+        }};
+         
+        // Some more code here
+    }
+}
+</code></pre>
+<p>成吨的资源需要在ReallyHeavyObject被GC的时候清理,然而你可能并没有意识到这一点,你只是:若无其事的调用了quickHarmlessMethod(),完成了ReallyHeavyObject的使命,而且以后可能不会再调用第二次```</p>
+<p>如果有一天,另一个开发者改动了你的代码,在quickHarmlessMethod方法中返回了source对象,如下代码所示:</p>
+<pre><code>	public Map quickHarmlessMethod() {
+		Map source = new HashMap(){{
+			put("firstName", "John");
+			put("lastName", "Smith");
+			put("organizations", new HashMap(){{
+				put("0", new HashMap(){{
+					put("id", "1234");
+				}});
+				put("abc", new HashMap(){{
+					put("id", "5678");
+				}});
+			}});
+		}};
+		 
+		return source;
+	}
+</code></pre>
+<p>那你又犯了另一个罪行!如前文所说,所有匿名内部类都会在内部维护一个外部容器类的引用,所以,你在无心之下成功的将ReallyHeavyObject这个类通过此方法暴露了出去;<br>
+如果不信的话,请尝试以下代码:</p>
+<pre><code>public static void main(String[] args) throws Exception {
+    Map map = new ReallyHeavyObject().quickHarmlessMethod();
+    Field field = map.getClass().getDeclaredField("this$0");
+    field.setAccessible(true);
+    System.out.println(field.get(map).getClass());
+}
+</code></pre>
+<p>会返回内容:</p>
+<pre><code>class ReallyHeavyObject
+</code></pre>
+<p>如果你还不信的话,就请打开调试模式自行查看!你会发现不仅这个匿名Map持有了外部类的引用,就连他的子类,也持有!</p>
+<h2 id="toc_h2_5">延伸</h2>
+<p>也许你会讲,第三个问题可以通过将方法静态化来解决,这没错!但这是基于你对以上几点有深刻的认知的前提下,万一哪天你的小弟在不知情的前提下,将static关键字删掉,问题又会出现了!<br>
+古往今来,使用匿名类已经带来够多的麻烦了,而匿名内部类,那简直更危险!因为无心的人根本不会注意到,他们通过一个匿名内部类将外部容器类的引用暴露了出去!</p>
+<h2 id="toc_h2_6">结论</h2>
+<p><strong>SO,我们的结论是 <del>没有蛀牙</del> 永远不要使用双花括号初始化实例!!!</strong></p>
+<p>参考文章:<a href="https://blog.jooq.org/2014/12/08/dont-be-clever-the-double-curly-braces-anti-pattern/" target="_blank">Don’t be “Clever”: The Double Curly Braces Anti Pattern</a></p>
+        </div>
+    </div>
+    <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h2">
+            <a href="#toc_h2_0">说在前面</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_1">为什么需要拒绝以这种方式初始化实例?</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_2">可读性 --这是最不重要的一个原因</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_3">每个实例一个类型</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_4">最重要的原因是这样做会导致内存泄漏!!!</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_5">延伸</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_6">结论</a>
+        </li>
+</ul>    </div>
+    <div class="body--gray post__gray">
+        <div class="wrapper comment">
+                <div id="gitalk-container" style="padding: 30px 0;"></div>
+                <div id="b3logsolocomments"></div>
+                <div id="vcomment" style="padding: 30px 0;" data-name="washmore" data-postId="1498563330053"></div>
+
+            <div class="post__list fn__flex">
+                <div class="fn__flex-1">
+                    <div id="externalRelevantArticles"></div>
+                </div>
+                <div class="post__list-mid fn__flex-1">
+                    <div id="randomArticles"></div>
+                </div>
+                <div class="fn__flex-1">
+                    <div id="relevantArticles"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post__fix">
+        <div class="wrapper">
+            <span class="post__share mobile__none">
+                Share
+                <span class="tag tag--4" data-type="weibo">WeiBo</span>
+                <span class="tag tag--5" data-type="twitter">Twitter</span>
+                <span class="tag tag--6" data-type="qqz">QZone</span>
+                <span class="post__code tag tag--7"
+                      data-type="wechat"
+                      data-title="永远不要使用双花括号初始化实例!!!"
+                      data-blogtitle="洗澡狂魔的技术阵地"
+                      data-url="https://washmore.github.io/articles/2017/06/27/1498563330053.html"
+                      data-avatar="https://img.hacpai.com/avatar/1466093804169_1492143958695.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+                    WeChat
+                    <span class="qrcode"></span>
+                </span>
+            </span>
+            <span class="post__arrow">
+                    <a href="https://washmore.github.io/articles/2017/06/24/1498282794390.html" rel="prev"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="他们打败了全世界，却输给了自己的国家！"
+                       aria-label="旧一篇: 他们打败了全世界，却输给了自己的国家！">←</a>
+
+                    <a href="https://washmore.github.io/articles/2017/07/06/1499310990066.html" rel="next"
+                       class="vditor-tooltipped__n vditor-tooltipped"
+                       pjax-title="hack小技巧解决solo的md解析器[]()语法不支持新窗口(标签)打开页面功能"
+                       aria-label="新一篇: hack小技巧解决solo的md解析器[]()语法不支持新窗口(标签)打开页面功能">→</a>
+                <a href="javascript:Util.goTop()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到顶部">↑</a>
+                <a href="javascript:Util.goBottom()" class="vditor-tooltipped__n vditor-tooltipped"
+                   aria-label="移动到底部">↓</a>
+            </span>
+        </div>
+    </div>
+    
+</main>
+<footer class="footer">
+    <div class="ft__center">
+    <a href="https://ld246.com/member/washmore"
+       aria-label="https://ld246.com/member/washmore"
+       class="vditor-tooltipped__n vditor-tooltipped  user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+        <a href="https://github.com/washmore"
+           aria-label="https://github.com/washmore"
+           class="vditor-tooltipped__n vditor-tooltipped  user__site"
+           target="_blank" rel="noopener nofollow">
+            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M16 0.331c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path>
+            </svg>
+        </a>
+
+    </div>
+    <nav class="footer__nav mobile__none">
+            <a class="ft__link" href="https://github.com/washmore" target="_blank" rel="section">
+                Github
+            </a>
+            <a class="ft__link" href="https://family.washmoretech.com" target="_blank" rel="section">
+                我要记账
+            </a>
+            <a class="ft__link" href="https://www.anxunsi.net/" target="_blank" rel="section">
+                实力派studio
+            </a>
+        <a class="ft__link" rel="alternate" href="https://washmore.github.io/rss.xml" rel="section">RSS</a>
+    </nav>
+    <div class="footer__border mobile__none"></div>
+    <div class="wrapper fn__flex">
+        <div class="fn__flex-1 mobile__none">
+            <div class="ft__fade">washmore - 世界上最远的距离,是我说句hello,你却不回world</div>
+            <br>
+                资深Java搬运工,Vue&React全家桶...
+        </div>
+
+
+        <div class="fn__flex-1 footer__copyright">
+            <a class="ft__link" href="https://washmore.github.io/archives.html">
+                61
+                文章
+            </a>
+           <br>
+            <span data-uvstaturl="https://washmore.github.io">355649</span> <span class="ft-gray">浏览</span>
+ <br>
+            &copy; 2020
+            <a class="ft__link" href="https://washmore.github.io">洗澡狂魔的技术阵地</a>
+            &nbsp;|&nbsp;本网站使用<a href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=i8m75zfp" target="_blank">阿里云</a>服务器,<a href="https://www.anxunsi.net" target="_blank">实力派工作室</a>技术支持&nbsp;|&nbsp;<a href="http://www.beian.miit.gov.cn/" target="_blank">湘ICP备19012122号</a>
+<script type='text/javascript'>
+	window.onload = function () {
+	    $(function () {
+            $('body > div.wrapper > div > aside > section > div.module').first(). before('<div class="module" id="qrcode_gzh" style="display:none;"><header><h2>扫码关注公众号</h2></header><main><img src="https://file.washmoretech.com/qrcode_gzh.jpg"/></main></div>');
+            $('#qrcode_gzh').slideDown("slow");
+   $('body > div.wrapper > div > aside > section > div.module> header > h2').first(). each(function(i){
+                    $(this).html($(this).html()+"&nbsp;&nbsp;<a href='javascript:void(0);' class='support_washmore' style='color:red;'>->打赏一下(点我嘛)<-</a>");
+                });
+                $('body > div.wrapper > div > main > article > header.title:first'). prepend('<h2 style="text-align:center;font-size:26px;"><a href="javascript:void(0);"   class="support_washmore"   title="点我,点我,快点我嘛~!">如果觉得我的文章对您有用,考虑随意打赏点呗~</a></h2>');           
+
+
+            $.getScript("https://file.washmoretech.com/jquery.support.1.0.0.js", function(){
+            });
+                    $('a').each(function(){
+				if($(this).attr('href') && $(this).attr('href').indexOf('http')==0 && $(this).attr('href').indexOf('blog.washmore')==-1){
+					$(this).attr("target","_blank");
+				}
+		    });
+               
+            });
+	}
+</script>
+
+        </div>
+    </div>
+</footer>
+<script>
+  var Label = {
+    speech: true,
+    servePath: "https://washmore.github.io",
+    staticServePath: "https://washmore.github.io",
+    luteAvailable: false,
+    hljsStyle: 'github',
+    langLabel: "zh_CN",
+    version: "4.3.1",
+    staticSite: true,
+    showCodeBlockLn: false,
+    articleId: "1498563330053",
+  }
+</script>
+<script type="text/javascript" src="https://washmore.github.io/skins/Pinghsu/js/headroom.min.js"></script>
+<script type="text/javascript"
+        src="https://washmore.github.io/skins/Pinghsu/js/common.min.js?1607592229766"
+        charset="utf-8"></script>
+
+
+
+<script type="text/javascript">
+    Util.addScript('https://washmore.github.io/js/page.min.js?1607592229766', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论不能为空",
+        "oId": "1498563330053",
+        "blogHost": "https://washmore.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
+    page.loadRelevantArticles('1498563330053', '<h3>RELEVANT POSTS</h3>');
+Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 3048ms, 2020/12/10 17:26:23 -->
