@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>REST接口设计规范 - 洗澡狂魔的技术阵地</title><meta name="description" content="设计原则 URL即资源，使用名词表示资源 接口应直观、简洁、风格命名保持一致 必须版本化，具有足够的灵活性来支持上层UI"/><meta property="og:description" content="设计原则 URL即资源，使用名词表示资源 接口应直观、简洁、风格命名保持一致 必须版本化，具有足够的灵活性来支持上层UI"/>    <meta name="keywords" content="洗澡狂魔,Java,博客,开源,程序员"/><link rel="dns-prefetch" href="https://washmore.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://washmore.github.io"><link rel="icon" type="image/png" href="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"/><link rel="apple-touch-icon" href="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"><link rel="shortcut icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="REST接口设计规范 - 洗澡狂魔的技术阵地"/><meta property="og:site_name" content="洗澡狂魔的技术阵地"/><meta property="og:url"      content="https://washmore.github.io/articles/2019/10/14/1571036636193.html?"/><meta property="og:image" content="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"/><link rel="search" type="application/opensearchdescription+xml" title="REST接口设计规范 - 洗澡狂魔的技术阵地" href="/opensearch.xml"><link href="https://washmore.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://washmore.github.io/manifest.json">        <link rel="canonical" href="https://washmore.github.io/articles/2019/10/14/1571036636193.html">        <link rel="stylesheet"
-              href="https://washmore.github.io/skins/Pinghsu/css/base.css?1607592229766"/>
-            <link rel="prev" title="selenium从上手到XX" href="https://washmore.github.io/articles/2019/08/30/1567152910228.html">
+    <head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>REST接口设计规范 - 洗澡狂魔的技术阵地</title><meta name="description" content="设计原则 URL即资源，使用名词表示资源 接口应直观、简洁、风格命名保持一致 必须版本化，具有足够的灵活性来支持上层UI"/><meta property="og:description" content="设计原则 URL即资源，使用名词表示资源 接口应直观、简洁、风格命名保持一致 必须版本化，具有足够的灵活性来支持上层UI"/>    <meta name="keywords" content="洗澡狂魔,Java,博客,开源,程序员"/><link rel="dns-prefetch" href="https://blog.washmore.tech"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://blog.washmore.tech"><link rel="icon" type="image/png" href="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"/><link rel="apple-touch-icon" href="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"><link rel="shortcut icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="REST接口设计规范 - 洗澡狂魔的技术阵地"/><meta property="og:site_name" content="洗澡狂魔的技术阵地"/><meta property="og:url"      content="https://blog.washmore.tech/articles/2019/10/14/1571036636193.html?"/><meta property="og:image" content="https://avatars2.githubusercontent.com/u/13030698?s=460&v=4"/><link rel="search" type="application/opensearchdescription+xml" title="REST接口设计规范 - 洗澡狂魔的技术阵地" href="/opensearch.xml"><link href="https://blog.washmore.tech/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://blog.washmore.tech/manifest.json">        <link rel="canonical" href="https://blog.washmore.tech/articles/2019/10/14/1571036636193.html">            <link rel="stylesheet"
+                  href="https://blog.washmore.tech/skins/Bruce/css/base.css?1607592229766"/>
+            <link rel="prev" title="selenium从上手到XX" href="https://blog.washmore.tech/articles/2019/08/30/1567152910228.html">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
 <script>
 console.info('世界上最远的距离,是我说句hello,你却不回world');
@@ -14,105 +14,64 @@ var _hmt = _hmt || [];
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
-</script><script src="https://cdn.jsdelivr.net/npm/vditor@3.5.3/dist/js/icons/ant.js" async="" id="vditorIconScript"></script></head>
-<body>
-<header class="header">
-    <div class="wrapper">
-        <a href="https://washmore.github.io" rel="start" class="header__logo">
-            <img src="https://img.hacpai.com/avatar/1466093804169_1492143958695.png?imageView2/1/w/128/h/128/interlace/0/q/100" alt="洗澡狂魔的技术阵地"/>
-            洗澡狂魔的技术阵地
-        </a>
+</script><script src="https://cdn.jsdelivr.net/npm/vditor@3.5.3/dist/js/icons/ant.js" async="" id="vditorIconScript"></script>    </head>
+    <body>
 
-        <nav class="header__nav mobile__none">
-            <a href="https://washmore.github.io/tags.html" rel="section">
-                Tags
-            </a>
-            <a href="https://washmore.github.io/archives.html">
-                Archives
-            </a>
-            <a rel="archive" href="https://washmore.github.io/links.html">
-                Links
-            </a>
+<div class="header">
+
+    <div class="container">
+        <div class="col-sm-2"></div>
+        <nav>
+            <a class="nav-item" href="https://blog.washmore.tech">首页</a>
+
+                <a class="nav-item" href="https://github.com/washmore"
+                   target="_blank">Github
+                </a>
+                <a class="nav-item" href="https://family.washmoretech.com"
+                   target="_blank">我要记账
+                </a>
+                <a class="nav-item" href="https://www.anxunsi.net/"
+                   target="_blank">实力派studio
+                </a>
+
+            <a class="nav-item" href="https://blog.washmore.tech/links.html">友链</a>
+            <a class="nav-item" href="https://blog.washmore.tech/tags.html">标签</a>
+            <a class="nav-item" href="https://blog.washmore.tech/archives.html">存档</a>
         </nav>
-
-        <div class="header__bar fn__none" onclick="$(this).next().slideToggle()">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                <path fill="#444" d="M0 3h20v2h-20v-2zM0 9h20v2h-20v-2zM0 15h20v2h-20v-2z"></path>
-            </svg>
-        </div>
-        <main class="header__menu fn__none">
-            <ul>
-                    <li>
-                        <a href="https://github.com/washmore" target="_blank" rel="section">
-                            Github
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://family.washmoretech.com" target="_blank" rel="section">
-                            我要记账
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.anxunsi.net/" target="_blank" rel="section">
-                            实力派studio
-                        </a>
-                    </li>
-                <li>
-                    <a href="https://washmore.github.io/tags.html" rel="section">
-                        Tags
-                    </a>
-                </li>
-                <li>
-                    <a href="https://washmore.github.io/archives.html">
-                        Archives
-                    </a>
-                </li>
-                <li>
-                    <a rel="archive" href="https://washmore.github.io/links.html">
-                        Links
-                    </a>
-                </li>
-                <li>
-                    <a rel="alternate" href="https://washmore.github.io/rss.xml" rel="section">
-                        RSS
-                    </a>
-                </li>
-            </ul>
-        </main>
+        <div class="col-sm-2"></div>
     </div>
-</header>
-<main id="pjax" class="fn__flex-1">
-    
-    <div class="post wrapper wrapper--miner">
-        <h2 class="item__title">
-            <a rel="bookmark" href="https://washmore.github.io/articles/2019/10/14/1571036636193.html">
-                REST接口设计规范
-            </a>
-        </h2>
-        <div class="ft__fade item__meta">
-                Updated on
-            <time>
-                Oct 14, 2019
-            </time>
-            with <span data-uvstaturl="https://washmore.github.io/articles/2019/10/14/1571036636193.html">0</span> views
-                and <a href="#b3logsolocomments"><span data-uvstatcmt="1571036636193">0</span> comments</a>
-        </div>
-        <div class="item__tags">
-                <a rel="tag" class="tag tag--0" href="https://washmore.github.io/tags/Java">
-                    <b># Java</b>
-                </a>
-                <a rel="tag" class="tag tag--1" href="https://washmore.github.io/tags/Spring">
-                    <b># Spring</b>
-                </a>
-                <a rel="tag" class="tag tag--2" href="https://washmore.github.io/tags/HTTP">
-                    <b># HTTP</b>
-                </a>
-                <a rel="tag" class="tag tag--3" href="https://washmore.github.io/tags/%E8%A7%84%E8%8C%83">
-                    <b># 规范</b>
-                </a>
-        </div>
-        <div class="vditor-reset">
-            <h2 id="toc_h2_0">设计原则</h2>
+</div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8 site article-list">
+                    <div class="article">
+                        <div class="row article">
+                            <h2 class="row article-title">
+                                <a rel="bookmark" href="https://blog.washmore.tech/articles/2019/10/14/1571036636193.html">
+                                    REST接口设计规范
+                                </a>
+                            </h2>
+
+                            <div class="row article-tags">
+                                <a rel="tag" href="https://blog.washmore.tech/tags/Java">
+                                    Java</a>, 
+                                <a rel="tag" href="https://blog.washmore.tech/tags/Spring">
+                                    Spring</a>, 
+                                <a rel="tag" href="https://blog.washmore.tech/tags/HTTP">
+                                    HTTP</a>, 
+                                <a rel="tag" href="https://blog.washmore.tech/tags/%E8%A7%84%E8%8C%83">
+                                    规范</a>
+                            </div>
+
+                            <div class="row article-date">
+                                October 14, 2019
+                            </div>
+
+                            <div class="row article-content code-highlight">
+                                <div class="col-sm-12 vditor-reset vditor-reset--article" id="abstract1571036636193">
+                                    <h2 id="toc_h2_0">设计原则</h2>
 <ul>
 <li>URL即资源，使用名词表示资源</li>
 <li>接口应直观、简洁、风格命名保持一致</li>
@@ -481,9 +440,20 @@ GET /v1/employee?sort=age&amp;order=desc
 <li><a href="https://stackoverflow.com/questions/20381976/rest-api-design-getting-a-resource-through-rest-with-different-parameters-but" target="_blank">rest-api get resource with different field</a></li>
 <li><a href="https://stackoverflow.com/questions/10302179/hyphen-underscore-or-camelcase-as-word-delimiter-in-uris" target="_blank">StackOverflow URI中单词分隔符的一些讨论</a></li>
 </ul>
+                                </div>
+                            </div>
+                        </div>
+                            <div id="gitalk-container"></div>
+                            <div id="b3logsolocomments"></div>
+                            <div id="vcomment" data-name="washmore" data-postId="1571036636193"></div>
+                    </div>
+                    <div id="relevantArticles"></div>
+                    <div id="randomArticles"></div>
+                    <div class="col-sm-2"></div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="post__toc">
+
 <ul class="article__toc">
         <li class="toc__h2">
             <a href="#toc_h2_0">设计原则</a>
@@ -581,61 +551,8 @@ GET /v1/employee?sort=age&amp;order=desc
         <li class="toc__h2">
             <a href="#toc_h2_31">扩展阅读</a>
         </li>
-</ul>    </div>
-    <div class="body--gray post__gray">
-        <div class="wrapper comment">
-                <div id="gitalk-container" style="padding: 30px 0;"></div>
-                <div id="b3logsolocomments"></div>
-                <div id="vcomment" style="padding: 30px 0;" data-name="washmore" data-postId="1571036636193"></div>
-
-            <div class="post__list fn__flex">
-                <div class="fn__flex-1">
-                    <div id="externalRelevantArticles"></div>
-                </div>
-                <div class="post__list-mid fn__flex-1">
-                    <div id="randomArticles"></div>
-                </div>
-                <div class="fn__flex-1">
-                    <div id="relevantArticles"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="post__fix">
-        <div class="wrapper">
-            <span class="post__share mobile__none">
-                Share
-                <span class="tag tag--4" data-type="weibo">WeiBo</span>
-                <span class="tag tag--5" data-type="twitter">Twitter</span>
-                <span class="tag tag--6" data-type="qqz">QZone</span>
-                <span class="post__code tag tag--7"
-                      data-type="wechat"
-                      data-title="REST接口设计规范"
-                      data-blogtitle="洗澡狂魔的技术阵地"
-                      data-url="https://washmore.github.io/articles/2019/10/14/1571036636193.html"
-                      data-avatar="https://img.hacpai.com/avatar/1466093804169_1492143958695.png?imageView2/1/w/128/h/128/interlace/0/q/100">
-                    WeChat
-                    <span class="qrcode"></span>
-                </span>
-            </span>
-            <span class="post__arrow">
-                    <a href="https://washmore.github.io/articles/2019/08/30/1567152910228.html" rel="prev"
-                       class="vditor-tooltipped__n vditor-tooltipped"
-                       pjax-title="selenium从上手到XX"
-                       aria-label="旧一篇: selenium从上手到XX">←</a>
-
-                <a href="javascript:Util.goTop()" class="vditor-tooltipped__n vditor-tooltipped"
-                   aria-label="移动到顶部">↑</a>
-                <a href="javascript:Util.goBottom()" class="vditor-tooltipped__n vditor-tooltipped"
-                   aria-label="移动到底部">↓</a>
-            </span>
-        </div>
-    </div>
-    
-</main>
-<footer class="footer">
-    <div class="ft__center">
+</ul>
+<div class="footer">
     <a href="https://ld246.com/member/washmore"
        aria-label="https://ld246.com/member/washmore"
        class="vditor-tooltipped__n vditor-tooltipped  user__site"
@@ -656,39 +573,8 @@ GET /v1/employee?sort=age&amp;order=desc
             </svg>
         </a>
 
-    </div>
-    <nav class="footer__nav mobile__none">
-            <a class="ft__link" href="https://github.com/washmore" target="_blank" rel="section">
-                Github
-            </a>
-            <a class="ft__link" href="https://family.washmoretech.com" target="_blank" rel="section">
-                我要记账
-            </a>
-            <a class="ft__link" href="https://www.anxunsi.net/" target="_blank" rel="section">
-                实力派studio
-            </a>
-        <a class="ft__link" rel="alternate" href="https://washmore.github.io/rss.xml" rel="section">RSS</a>
-    </nav>
-    <div class="footer__border mobile__none"></div>
-    <div class="wrapper fn__flex">
-        <div class="fn__flex-1 mobile__none">
-            <div class="ft__fade">washmore - 世界上最远的距离,是我说句hello,你却不回world</div>
-            <br>
-                资深Java搬运工,Vue&React全家桶...
-        </div>
-
-
-        <div class="fn__flex-1 footer__copyright">
-            <a class="ft__link" href="https://washmore.github.io/archives.html">
-                61
-                文章
-            </a>
-           <br>
-            <span data-uvstaturl="https://washmore.github.io">355649</span> <span class="ft-gray">浏览</span>
- <br>
-            &copy; 2020
-            <a class="ft__link" href="https://washmore.github.io">洗澡狂魔的技术阵地</a>
-            &nbsp;|&nbsp;本网站使用<a href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=i8m75zfp" target="_blank">阿里云</a>服务器,<a href="https://www.anxunsi.net" target="_blank">实力派工作室</a>技术支持&nbsp;|&nbsp;<a href="http://www.beian.miit.gov.cn/" target="_blank">湘ICP备19012122号</a>
+    <br>
+    &copy; 2020 <a href="https://blog.washmore.tech">洗澡狂魔的技术阵地</a> &nbsp;|&nbsp;本网站使用<a href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=i8m75zfp" target="_blank">阿里云</a>服务器,<a href="https://www.anxunsi.net" target="_blank">实力派工作室</a>技术支持&nbsp;|&nbsp;<a href="http://www.beian.miit.gov.cn/" target="_blank">湘ICP备19012122号</a>
 <script type='text/javascript'>
 	window.onload = function () {
 	    $(function () {
@@ -712,14 +598,13 @@ GET /v1/employee?sort=age&amp;order=desc
 	}
 </script>
 
-        </div>
-    </div>
-</footer>
+</div>
+
 <script>
   var Label = {
     speech: true,
-    servePath: "https://washmore.github.io",
-    staticServePath: "https://washmore.github.io",
+    servePath: "https://blog.washmore.tech",
+    staticServePath: "https://blog.washmore.tech",
     luteAvailable: false,
     hljsStyle: 'github',
     langLabel: "zh_CN",
@@ -729,32 +614,29 @@ GET /v1/employee?sort=age&amp;order=desc
     articleId: "1571036636193",
   }
 </script>
-<script type="text/javascript" src="https://washmore.github.io/skins/Pinghsu/js/headroom.min.js"></script>
-<script type="text/javascript"
-        src="https://washmore.github.io/skins/Pinghsu/js/common.min.js?1607592229766"
-        charset="utf-8"></script>
-
-
+<script type="text/javascript" src="https://blog.washmore.tech/js/common.min.js?1607592229766" charset="utf-8"></script>
+<script type="text/javascript" src="https://blog.washmore.tech/skins/Bruce/js/bootstrap.min.js?1607592229766" charset="utf-8"></script>
+<script>
+    Util.setTopBar()
+</script>
 
 <script type="text/javascript">
-    Util.addScript('https://washmore.github.io/js/page.min.js?1607592229766', 'soloPageScript')
+    Util.addScript('https://blog.washmore.tech/js/page.min.js?1607592229766', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论不能为空",
         "oId": "1571036636193",
-        "blogHost": "https://washmore.github.io",
+        "blogHost": "https://blog.washmore.tech",
         "randomArticles1Label": "随机阅读：",
         "externalRelevantArticles1Label": "站外相关阅读："
     });
     $(document).ready(function () {
         page.load();
-    page.tips.externalRelevantArticlesDisplayCount = "0";
-    page.loadRandomArticles('<h3>RECOMMEND POSTS</h3>');
-    page.loadRelevantArticles('1571036636193', '<h3>RELEVANT POSTS</h3>');
-Skin.initArticle()
+        page.tips.externalRelevantArticlesDisplayCount = "0";
+        page.loadRandomArticles();
+        page.loadRelevantArticles('1571036636193', '<h4>相关阅读：</h4>');
     });
 </script>
-
-</body>
+    </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 2680ms, 2020/12/10 17:25:41 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 3099ms, 2020/12/10 17:51:52 -->
